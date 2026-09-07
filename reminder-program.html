@@ -123,7 +123,18 @@
         </div>
         <div style="display:flex; flex-direction:column; gap:6px;">
           <label for="r-type" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">ประเภทอาคาร</label>
-          <input id="r-type" name="building_type" type="text" placeholder="เช่น อาคารชุด / คอนโด" style="padding:12px 14px; border:1px solid #E4DCC8; border-radius:5px; font-size:14px; color:#4A564C; background:#F7F2E3;">
+          <select id="r-type" name="building_type" required style="padding:12px 14px; border:1px solid #E4DCC8; border-radius:5px; font-size:14px; color:#4A564C; background:#F7F2E3;">
+            <option value="" selected disabled>เลือกประเภทอาคาร</option>
+            <option value="อาคารชุด / คอนโดมิเนียม">อาคารชุด / คอนโดมิเนียม</option>
+            <option value="อาคารสำนักงาน">อาคารสำนักงาน</option>
+            <option value="อาคารพาณิชย์">อาคารพาณิชย์</option>
+            <option value="ห้างสรรพสินค้า / ศูนย์การค้า">ห้างสรรพสินค้า / ศูนย์การค้า</option>
+            <option value="โรงแรม">โรงแรม</option>
+            <option value="โรงงาน">โรงงาน</option>
+            <option value="โรงพยาบาล">โรงพยาบาล</option>
+            <option value="อาคารสูง (≥ 23 เมตร)">อาคารสูง (≥ 23 เมตร)</option>
+            <option value="อื่นๆ">อื่นๆ</option>
+          </select>
         </div>
         <div style="display:flex; flex-direction:column; gap:6px;">
           <label for="r-expiry" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">วันหมดอายุ อ.6 / ร.1</label>
