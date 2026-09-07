@@ -100,7 +100,7 @@
 
   <!-- FORM -->
   <div class="stack-row" style="display:flex; gap:56px; padding:0 64px 72px 64px;">
-    <form id="reminder-form" name="reminder-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" style="flex:1; display:flex; flex-direction:column; gap:20px; padding:44px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
+    <form id="reminder-form" name="reminder-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you-reminder.html" style="flex:1; display:flex; flex-direction:column; gap:20px; padding:44px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
       <input type="hidden" name="form-name" value="reminder-registration">
       <p class="hidden-field"><label>อย่ากรอกช่องนี้ถ้าท่านเป็นมนุษย์: <input name="bot-field"></label></p>
       <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:22px; color:#1E3A28;">ลงทะเบียนรับการแจ้งเตือนฟรี</h3>
@@ -182,7 +182,7 @@
           })
           .then(function (result) {
             if (result.ok) {
-              window.location.href = '/thank-you.html';
+              window.location.href = '/thank-you-reminder.html';
             } else {
               if (btn) btn.disabled = false;
               if (statusEl) {
