@@ -6,7 +6,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-const FROM_EMAIL = "Empower Best Solution <onboarding@resend.dev>";
+const FROM_EMAIL = "Empower Best Solution <notify@empowerbestsolution.com>";
 
 function jsonResponse(statusCode, data) {
   return {
