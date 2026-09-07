@@ -100,7 +100,7 @@
 
   <!-- FORM -->
   <div class="stack-row" style="display:flex; gap:56px; padding:0 64px 72px 64px;">
-    <form name="reminder-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" style="flex:1; display:flex; flex-direction:column; gap:20px; padding:44px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
+    <form id="reminder-form" name="reminder-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" style="flex:1; display:flex; flex-direction:column; gap:20px; padding:44px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
       <input type="hidden" name="form-name" value="reminder-registration">
       <p class="hidden-field"><label>อย่ากรอกช่องนี้ถ้าท่านเป็นมนุษย์: <input name="bot-field"></label></p>
       <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:22px; color:#1E3A28;">ลงทะเบียนรับการแจ้งเตือนฟรี</h3>
@@ -147,7 +147,61 @@
         ลงทะเบียนรับการแจ้งเตือน
       </button>
       <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#4A564C; text-align:center;">ทีมงานจะติดต่อยืนยันการเพิ่มเพื่อน LINE OA เพื่อเปิดใช้งานการแจ้งเตือนให้ท่านอีกครั้ง</span>
+      <span id="reminder-status" role="status" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; text-align:center;"></span>
     </form>
+    <script>
+    (function () {
+      var form = document.getElementById('reminder-form');
+      if (!form) return;
+      var statusEl = document.getElementById('reminder-status');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var data = {
+          name: form.querySelector('#r-name').value,
+          phone: form.querySelector('#r-phone').value,
+          email: form.querySelector('#r-email').value,
+          building_name: form.querySelector('#r-building').value,
+          building_type: form.querySelector('#r-type').value,
+          expiry_date: form.querySelector('#r-expiry').value
+        };
+        if (btn) btn.disabled = true;
+        if (statusEl) {
+          statusEl.style.color = '#4A564C';
+          statusEl.textContent = 'กำลังส่งข้อมูล...';
+        }
+        fetch('/.netlify/functions/register-building', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(function (res) {
+            return res.json().then(function (body) {
+              return { ok: res.ok, body: body };
+            });
+          })
+          .then(function (result) {
+            if (result.ok) {
+              window.location.href = '/thank-you.html';
+            } else {
+              if (btn) btn.disabled = false;
+              if (statusEl) {
+                statusEl.style.color = '#B3423A';
+                statusEl.textContent =
+                  (result.body && result.body.error) || 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+              }
+            }
+          })
+          .catch(function () {
+            if (btn) btn.disabled = false;
+            if (statusEl) {
+              statusEl.style.color = '#B3423A';
+              statusEl.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+            }
+          });
+      });
+    })();
+    </script>
 
     <div style="flex:0.6; display:flex; flex-direction:column; gap:20px;">
       <div style="display:flex; gap:14px; align-items:flex-start; padding:22px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
