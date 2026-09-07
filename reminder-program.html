@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>โปรแกรมเตือนตรวจสอบอาคาร | Empower Best Solution</title>
+<meta name="description" content="ลงทะเบียนฟรี รับการแจ้งเตือนล่วงหน้า 90/60/45 วันก่อนครบกำหนดตรวจสอบอาคาร ทาง LINE และอีเมล ไม่ต้องกังวลว่าจะลืมหรือเลยกำหนดตามกฎหมายอีกต่อไป">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 48 48%27%3E%3Crect width=%2748%27 height=%2748%27 rx=%278%27 fill=%27%231E3A28%27/%3E%3Cpath d=%27M8 38V20l7-9 5 7v20%27 stroke=%27%23F7F2E3%27 stroke-width=%272.2%27 fill=%27none%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M19 38V15l5-7 5 7v23%27 stroke=%27%23F7F2E3%27 stroke-width=%272.2%27 fill=%27none%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M29 38V21l5-7 7 9v15%27 stroke=%27%23F7F2E3%27 stroke-width=%272.2%27 fill=%27none%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<div class="container">
+  <!-- HEADER -->
+  <div class="site-header" style="display:flex; align-items:center; justify-content:space-between; padding:22px 64px; background:#F7F2E3; border-bottom:1px solid #E4DCC8; position:relative;">
+    <a href="index.html" class="brand" style="display:flex; align-items:center; gap:14px;">
+      <img src="assets/logo-icon-dark.png" alt="Empower Best Solution" style="height:40px; width:auto; display:block;">
+      <div style="display:flex; flex-direction:column; line-height:1.3;">
+        <span style="font-family:'Noto Serif Thai',serif; font-weight:700; font-size:19px; color:#1E3A28;">Empower Best Solution</span>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2.5px; color:#BE7C3E; text-transform:uppercase;">Building Inspection · Thailand</span>
+      </div>
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle-input">
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="เปิดเมนู"><span></span><span></span><span></span></label>
+    <nav class="site-nav" style="display:flex; gap:28px; align-items:center;">
+      <a class="navlink" href="index.html" style="font-size:14px; font-weight:500;">หน้าแรก</a>
+      <a class="navlink" href="about.html" style="font-size:14px; font-weight:500;">เกี่ยวกับเรา</a>
+      <a class="navlink" href="reminder-program.html" style="font-size:14px; font-weight:700; color:#BE7C3E;">โปรแกรมเตือนตรวจสอบอาคาร</a>
+      <a class="navlink" href="services.html" style="font-size:14px; font-weight:500;">บริการของเรา</a>
+      <a class="navlink" href="legal-knowledge.html" style="font-size:14px; font-weight:500;">ความรู้ตามกฎหมาย</a>
+      <a class="navlink" href="contact.html" style="font-size:14px; font-weight:500;">ติดต่อเรา</a>
+    </nav>
+    <a href="contact.html" class="btn-amber header-cta" style="background:#BE7C3E; color:#FFFFFF; padding:12px 22px; border-radius:4px; border:none; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; cursor:pointer; white-space:nowrap; display:inline-block;">ปรึกษาเราฟรี</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="stack-row" style="display:flex; align-items:center; gap:56px; padding:80px 64px 56px 64px;">
+    <div style="display:flex; flex-direction:column; gap:24px; flex:1.1;">
+      <div style="display:flex; align-items:center; gap:14px;">
+        <div style="width:28px; height:1px; background:#BE7C3E;"></div>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:3px; color:#BE7C3E; text-transform:uppercase;">โปรแกรมเตือนตรวจสอบอาคาร · ไม่มีค่าใช้จ่าย</span>
+      </div>
+      <h1 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:44px; line-height:1.25; color:#1E3A28;">ไม่พลาดทุกรอบ<br>ตรวจสอบอาคาร</h1>
+      <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:16px; line-height:1.85; color:#4A564C; max-width:520px;">ลงทะเบียนฟรี ระบบจะแจ้งเตือนล่วงหน้าให้ท่านทาง LINE และอีเมล ก่อนถึงกำหนดตรวจสอบทุกครั้ง พร้อมทีมงานพร้อมติดต่อเสนอราคาให้ทันเวลา ไม่ต้องกังวลว่าจะลืมหรือเลยกำหนดตามกฎหมายอีกต่อไป</p>
+      <div style="display:flex; gap:28px; margin-top:8px; flex-wrap:wrap;">
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <span style="font-family:'Noto Serif Thai',serif; font-weight:700; font-size:24px; color:#BE7C3E;">90 / 60 / 45</span>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#4A564C;">วันแจ้งเตือนล่วงหน้า</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <span style="font-family:'Noto Serif Thai',serif; font-weight:700; font-size:24px; color:#BE7C3E;">LINE + Email</span>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#4A564C;">ช่องทางแจ้งเตือน</span>
+        </div>
+      </div>
+    </div>
+    <div style="flex:0.9; display:flex; align-items:center; justify-content:center;">
+      <div style="width:100%; max-width:420px; padding:36px; background:#1E3A28; border-radius:10px; display:flex; flex-direction:column; gap:18px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 0 0-5 5v3.4c0 .9-.3 1.8-.9 2.5L4.5 16h15L18 13.9c-.6-.7-.9-1.6-.9-2.5V8a5 5 0 0 0-5-5Z" stroke="#BE7C3E" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:15px; color:#F7F2E3;">ตัวอย่างการแจ้งเตือน</span>
+        </div>
+        <div style="background:#F7F2E3; border-radius:8px; padding:18px; display:flex; flex-direction:column; gap:6px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:13px; color:#1E3A28;">Empower Best Solution</span>
+          <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13px; line-height:1.7; color:#4A564C;">แจ้งเตือน: คอนโด "เดอะ ริเวอร์ไซด์" ใกล้ครบกำหนดตรวจสอบประจำปี (ร.1 หมดอายุ 15 พ.ย. 2569) เหลืออีก 60 วัน — ติดต่อทีมงานเพื่อขอใบเสนอราคาได้แล้ววันนี้</p>
+        </div>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px; color:rgba(247,242,227,0.5);">ตัวอย่างข้อมูลสมมติ · Sample data</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div style="display:flex; flex-direction:column; gap:36px; padding:32px 64px 72px 64px;">
+    <div style="display:flex; flex-direction:column; gap:14px; align-items:center; text-align:center;">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:3px; color:#BE7C3E; text-transform:uppercase;">ขั้นตอนการทำงาน</span>
+      <h2 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:30px; color:#1E3A28;">ลงทะเบียนครั้งเดียว ไม่ต้องจำวันตรวจสอบอีกเลย</h2>
+    </div>
+    <div class="grid-4">
+      <div style="display:flex; flex-direction:column; gap:14px; padding:28px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#BE7C3E;">STEP / 01</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:16px; color:#1E3A28;">ลงทะเบียนข้อมูลอาคาร</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; line-height:1.7;">กรอกชื่ออาคาร รอบตรวจสอบ และวันหมดอายุของ อ.6 หรือ ร.1</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px; padding:28px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#BE7C3E;">STEP / 02</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:16px; color:#1E3A28;">ยืนยันตัวตนด้วย LINE</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; line-height:1.7;">เพิ่มเพื่อน LINE OA อัตโนมัติในคลิกเดียว เพื่อรับการแจ้งเตือน</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px; padding:28px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#BE7C3E;">STEP / 03</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:16px; color:#1E3A28;">รับการแจ้งเตือนล่วงหน้า</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; line-height:1.7;">แจ้งเตือนทาง LINE และอีเมล ล่วงหน้า 90 / 60 / 45 วันก่อนครบกำหนด</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px; padding:28px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#BE7C3E;">STEP / 04</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:16px; color:#1E3A28;">ทีมงานติดต่อกลับ</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; line-height:1.7;">เราติดต่อประเมินขอบเขตงานและจัดทำใบเสนอราคาให้ฟรี</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="stack-row" style="display:flex; gap:56px; padding:0 64px 72px 64px;">
+    <form name="reminder-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" style="flex:1; display:flex; flex-direction:column; gap:20px; padding:44px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
+      <input type="hidden" name="form-name" value="reminder-registration">
+      <p class="hidden-field"><label>อย่ากรอกช่องนี้ถ้าท่านเป็นมนุษย์: <input name="bot-field"></label></p>
+      <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:22px; color:#1E3A28;">ลงทะเบียนรับการแจ้งเตือนฟรี</h3>
+      <div class="form-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px;">
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="r-name" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">ชื่อ-นามสกุล</label>
+          <input id="r-name" name="name" type="text" required placeholder="ชื่อ-นามสกุลของท่าน" style="padding:12px 14px; border:1px solid #E4DCC8; border-radius:5px; font-size:14px; color:#4A564C; background:#F7F2E3;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="r-phone" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">เบอร์โทรศัพท์</label>
+          <input id="r-phone" name="phone" type="tel" required placeholder="08X-XXX-XXXX" style="padding:12px 14px; border:1px solid #E4DCC8; border-radius:5px; font-size:14px; color:#4A564C; background:#F7F2E3;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px; grid-column:span 2;">
+          <label for="r-email" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">อีเมล</label>
+          <input id="r-email" name="email" type="email" required placeholder="name@example.com" style="padding:12px 14px; border:1px solid #E4DCC8; border-radius:5px; font-size:14px; color:#4A564C; background:#F7F2E3;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px; grid-column:span 2;">
+          <label for="r-building" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">ชื่ออาคาร</label>
+          <input id="r-building" name="building_name" type="text" required placeholder="เช่น คอนโด เดอะ ริเวอร์ไซด์" style="padding:12px 14px; border:1px solid #E4DCC8; border-radius:5px; font-size:14px; color:#4A564C; background:#F7F2E3;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="r-type" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">ประเภทอาคาร</label>
+          <input id="r-type" name="building_type" type="text" placeholder="เช่น อาคารชุด / คอนโด" style="padding:12px 14px; border:1px solid #E4DCC8; border-radius:5px; font-size:14px; color:#4A564C; background:#F7F2E3;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <label for="r-expiry" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">วันหมดอายุ อ.6 / ร.1</label>
+          <input id="r-expiry" name="expiry_date" type="date" required style="padding:12px 14px; border:1px solid #E4DCC8; border-radius:5px; font-size:14px; color:#4A564C; background:#F7F2E3;">
+        </div>
+      </div>
+      <button type="submit" class="btn-amber" style="margin-top:6px; background:#BE7C3E; color:#FFFFFF; padding:15px 24px; border-radius:5px; border:none; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.8 5.3 4.6 6.8L6 21l3.7-1.9c.7.1 1.5.2 2.3.2 5.5 0 10-3.6 10-8s-4.5-8.3-10-8.3Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        ลงทะเบียนรับการแจ้งเตือน
+      </button>
+      <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#4A564C; text-align:center;">ทีมงานจะติดต่อยืนยันการเพิ่มเพื่อน LINE OA เพื่อเปิดใช้งานการแจ้งเตือนให้ท่านอีกครั้ง</span>
+    </form>
+
+    <div style="flex:0.6; display:flex; flex-direction:column; gap:20px;">
+      <div style="display:flex; gap:14px; align-items:flex-start; padding:22px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M4 4h16v13H8l-4 4Z" stroke="#1E3A28" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:14px; color:#1E3A28;">ไม่มีค่าใช้จ่าย</span>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C;">ลงทะเบียนและรับแจ้งเตือนได้ฟรีตลอด</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:flex-start; padding:22px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M4 13.5 9 18l11-12" stroke="#1E3A28" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:14px; color:#1E3A28;">แก้ไขข้อมูลได้ทุกเมื่อ</span>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C;">ติดต่อทีมงานทาง LINE เพื่ออัปเดตรอบตรวจปีถัดไป</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:flex-start; padding:22px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="12" cy="12" r="9" stroke="#1E3A28" stroke-width="1.6"/><path d="M9 9l6 6M15 9l-6 6" stroke="#1E3A28" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:14px; color:#1E3A28;">ยกเลิกได้ทุกเมื่อ</span>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C;">ยกเลิกรับแจ้งเตือนได้จากลิงก์ท้ายอีเมล/LINE</span>
+        </div>
+      </div>
+      <div style="display:flex; gap:14px; align-items:flex-start; padding:22px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M12 3 4 6v5c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-3Z" stroke="#1E3A28" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:14px; color:#1E3A28;">ข้อมูลปลอดภัยตาม PDPA</span>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C;">ใช้เพื่อแจ้งเตือนและติดต่อเสนอราคาเท่านั้น</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FOOTER -->
+  <div style="display:flex; flex-direction:column; background:#1E3A28; padding:64px 64px 28px 64px;">
+    <div class="footer-cols" style="display:flex; gap:80px;">
+      <div style="display:flex; flex-direction:column; gap:16px; width:320px;">
+        <a href="index.html" style="display:flex; align-items:center; gap:12px;">
+          <img src="assets/logo-icon-cream.png" alt="Empower Best Solution" style="height:32px; width:auto; display:block;">
+          <span style="font-family:'Noto Serif Thai',serif; font-weight:700; font-size:17px; color:#F7F2E3;">Empower Best Solution</span>
+        </a>
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1.5px; color:#BE7C3E;">Co., Ltd. · Bangkok, Thailand</span>
+        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13px; line-height:1.8; color:rgba(247,242,227,0.72);">บริการตรวจสอบอาคารตาม พ.ร.บ. ควบคุมอาคาร โดยทีมวิศวกร ที่ผ่านประสบการณ์บริหารงานวิศวกรรมอาคารใหญ่กว่า 100 โครงการ</p>
+        <div style="display:flex; gap:10px; margin-top:8px;">
+          <div style="width:34px; height:34px; border:1px solid rgba(247,242,227,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.8 5.3 4.6 6.8L6 21l3.7-1.9c.7.1 1.5.2 2.3.2 5.5 0 10-3.6 10-8s-4.5-8.3-10-8.3Z" stroke="#F7F2E3" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <div style="width:34px; height:34px; border:1px solid rgba(247,242,227,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M15 4h-2a4 4 0 0 0-4 4v3H6v4h3v9h4v-9h3l1-4h-4V8a1 1 0 0 1 1-1h3Z" stroke="#F7F2E3" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <div style="width:34px; height:34px; border:1px solid rgba(247,242,227,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#F7F2E3" stroke-width="1.5"/><path d="M7 10v7M7 7v.01M11 17v-4.5a2 2 0 0 1 4 0V17M11 12.5V17" stroke="#F7F2E3" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+          <div style="width:34px; height:34px; border:1px solid rgba(247,242,227,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="3" stroke="#F7F2E3" stroke-width="1.5"/><path d="M10 9.5v5l4.5-2.5Z" fill="#F7F2E3"/></svg></div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:13px; margin-top:4px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase; margin-bottom:6px;">บริการ</span>
+        <a href="services.html#major-inspection" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">ตรวจสอบใหญ่ทุก 5 ปี</a>
+        <a href="services.html#annual-inspection" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">ตรวจสอบประจำปี</a>
+        <a href="services.html#problem-analysis" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">วิเคราะห์ปัญหาอาคาร</a>
+        <a href="services.html#problem-fix" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">แก้ปัญหาอาคาร</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:13px; margin-top:4px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase; margin-bottom:6px;">บริษัท</span>
+        <a href="about.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">เกี่ยวกับเรา</a>
+        <a href="reminder-program.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">โปรแกรมเตือนตรวจสอบอาคาร</a>
+        <a href="legal-knowledge.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">ความรู้ตามกฎหมาย</a>
+        <a href="contact.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">ติดต่อเรา</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px; margin-top:4px;">
+        <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase; margin-bottom:2px;">ติดต่อเรา</span>
+        <div style="display:flex; gap:10px; align-items:flex-start; max-width:280px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-top:2px; flex-shrink:0;"><path d="M12 22s7-7.5 7-12.5a7 7 0 0 0-14 0C5 14.5 12 22 12 22Z" stroke="#BE7C3E" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" stroke="#BE7C3E" stroke-width="1.4"/></svg>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; line-height:1.7; color:rgba(247,242,227,0.85);">59/109 หมู่บ้านเดอะ วอเตอร์เฮ้าส์ ซอยบางบอน 3 ซอย 12 แขวงหลักสอง เขตบางแค กรุงเทพฯ 10160</span>
+        </div>
+        <a href="tel:0629565194" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:rgba(247,242,227,0.85);">062-956-5194</a>
+        <a href="https://line.me/ti/p/@911hrhms" target="_blank" rel="noopener" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:rgba(247,242,227,0.85);">LINE OA: @911hrhms</a>
+        <a href="mailto:empower.bestsolution2024@gmail.com" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:rgba(247,242,227,0.85);">empower.bestsolution2024@gmail.com</a>
+      </div>
+    </div>
+    <div style="display:flex; justify-content:space-between; border-top:1px solid rgba(247,242,227,0.15); margin-top:48px; padding-top:24px; flex-wrap:wrap; gap:8px;">
+      <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:rgba(247,242,227,0.5);">© 2026 Empower Best Solution Co., Ltd. สงวนลิขสิทธิ์</span>
+      <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:rgba(247,242,227,0.5);">ขึ้นทะเบียนผู้ตรวจสอบอาคารกับ ก.ย.ผ.</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

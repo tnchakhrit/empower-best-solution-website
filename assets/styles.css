@@ -1,0 +1,149 @@
+/* ============================================================
+   Empower Best Solution — shared stylesheet
+   Design tokens
+   ============================================================ */
+:root {
+  --ink: #1E3A28;      /* dark green */
+  --cream: #F7F2E3;    /* page background */
+  --amber: #BE7C3E;    /* accent */
+  --amber-hover: #A8692F;
+  --body: #4A564C;     /* body text */
+  --border: #E4DCC8;
+  --white: #FFFFFF;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  font-family: 'Noto Sans Thai', sans-serif;
+  color: var(--body);
+}
+
+a { color: var(--ink); text-decoration: none; }
+a:hover { color: var(--amber); }
+
+img, svg { max-width: 100%; }
+
+button { font-family: inherit; }
+
+/* Container = the old fixed 1440px canvas, now fluid */
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: var(--cream);
+}
+
+.navlink:hover { color: var(--amber) !important; }
+.btn-amber:hover { background: var(--amber-hover) !important; }
+.btn-outline:hover { background: var(--ink) !important; color: var(--cream) !important; }
+
+input, select, textarea { font-family: 'Noto Sans Thai', sans-serif; }
+input:focus, textarea:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
+
+/* FAQ accordions */
+summary::-webkit-details-marker { display: none; }
+summary { list-style: none; }
+details[open] summary svg { transform: rotate(180deg); }
+summary svg { transition: transform 0.15s ease; }
+
+/* ============================================================
+   Header / mobile nav toggle (checkbox hack, no JS needed)
+   ============================================================ */
+.nav-toggle-input { display: none; }
+
+.nav-toggle-label {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin: -8px;
+}
+.nav-toggle-label span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+}
+
+/* ============================================================
+   Responsive grids — the mockup used inline "repeat(N, 1fr)"
+   grids; on small screens these classes collapse to 1 column.
+   ============================================================ */
+.grid-2, .grid-3, .grid-4 { display: grid; gap: 24px; }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* Rows that should stack on mobile */
+.stack-row { display: flex; }
+
+/* Netlify form honeypot field */
+.hidden-field { position: absolute; left: -9999px; }
+
+/* ============================================================
+   Mobile breakpoint
+   ============================================================ */
+@media (max-width: 900px) {
+  .site-header { padding: 18px 24px !important; }
+  .site-header .brand span:first-child { font-size: 16px !important; }
+
+  .site-nav {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px 20px 24px;
+    z-index: 40;
+  }
+  .site-nav a { padding: 10px 0; width: 100%; }
+
+  .nav-toggle-input:checked ~ .site-nav { display: flex !important; }
+  .nav-toggle-label { display: flex; }
+
+  .header-cta { display: none !important; }
+
+  .container > div { padding-left: 24px !important; padding-right: 24px !important; }
+
+  h1 { font-size: 28px !important; }
+  h2 { font-size: 24px !important; }
+
+  .stack-row {
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+  .stack-row > * { max-width: 100% !important; flex: none !important; width: 100% !important; }
+
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-cols {
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+  .footer-cols > div { width: 100% !important; }
+
+  .icon-band { flex-direction: column !important; gap: 20px !important; align-items: flex-start !important; }
+
+  .hero-stats { flex-wrap: wrap; gap: 28px !important; }
+
+  .form-grid { grid-template-columns: 1fr !important; }
+  .form-grid > div[style*="span 2"] { grid-column: auto !important; }
+}
+
+@media (max-width: 600px) {
+  h1 { font-size: 24px !important; }
+  .container > div { padding-left: 18px !important; padding-right: 18px !important; }
+}
