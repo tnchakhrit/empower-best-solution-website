@@ -67,17 +67,17 @@ FOOTER = '''  <!-- FOOTER -->
       </div>
       <div style="display:flex; flex-direction:column; gap:13px; margin-top:4px;">
         <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase; margin-bottom:6px;">บริการ</span>
-        <a href="services.html#major-inspection" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">ตรวจสอบใหญ่ทุก 5 ปี</a>
-        <a href="services.html#annual-inspection" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">ตรวจสอบประจำปี</a>
-        <a href="services.html#problem-analysis" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">วิเคราะห์ปัญหาอาคาร</a>
-        <a href="services.html#problem-fix" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">แก้ปัญหาอาคาร</a>
+        <a href="services.html#major-inspection" class="footer-link" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px;">ตรวจสอบใหญ่ทุก 5 ปี</a>
+        <a href="services.html#annual-inspection" class="footer-link" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px;">ตรวจสอบประจำปี</a>
+        <a href="services.html#problem-analysis" class="footer-link" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px;">วิเคราะห์ปัญหาอาคาร</a>
+        <a href="services.html#problem-fix" class="footer-link" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px;">แก้ปัญหาอาคาร</a>
       </div>
       <div style="display:flex; flex-direction:column; gap:13px; margin-top:4px;">
         <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase; margin-bottom:6px;">บริษัท</span>
-        <a href="about.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">เกี่ยวกับเรา</a>
-        <a href="reminder-program.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">โปรแกรมเตือนตรวจสอบอาคาร</a>
-        <a href="legal-knowledge.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">ความรู้ตามกฎหมาย</a>
-        <a href="contact.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:rgba(247,242,227,0.85);">ติดต่อเรา</a>
+        <a href="about.html" class="footer-link" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px;">เกี่ยวกับเรา</a>
+        <a href="reminder-program.html" class="footer-link" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px;">โปรแกรมเตือนตรวจสอบอาคาร</a>
+        <a href="legal-knowledge.html" class="footer-link" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px;">ความรู้ตามกฎหมาย</a>
+        <a href="contact.html" class="footer-link" style="font-family:'Noto Sans Thai',sans-serif; font-size:14px;">ติดต่อเรา</a>
       </div>
       <div style="display:flex; flex-direction:column; gap:14px; margin-top:4px;">
         <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase; margin-bottom:2px;">ติดต่อเรา</span>

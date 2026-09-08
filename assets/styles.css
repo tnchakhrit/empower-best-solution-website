@@ -39,6 +39,15 @@ button { font-family: inherit; }
 }
 
 .navlink:hover { color: var(--amber) !important; }
+
+.footer-link {
+  color: rgba(247, 242, 227, 0.9) !important;
+  text-decoration: none;
+}
+.footer-link:hover {
+  color: var(--amber) !important;
+  text-decoration: underline;
+}
 .btn-amber:hover { background: var(--amber-hover) !important; }
 .btn-outline:hover { background: var(--ink) !important; color: var(--cream) !important; }
 
