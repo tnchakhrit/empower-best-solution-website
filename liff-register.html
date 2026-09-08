@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ลงทะเบียนอาคาร | Empower Best Solution</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<style>
+  body { background:#F7F2E3; margin:0; }
+  .liff-wrap { max-width:480px; margin:0 auto; padding:32px 20px 60px; }
+  .liff-card { background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px; padding:28px 24px; display:flex; flex-direction:column; gap:18px; }
+  .liff-field { display:flex; flex-direction:column; gap:6px; }
+  .liff-field label { font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; font-weight:600; }
+  .liff-field input, .liff-field select {
+    font-family:'Noto Sans Thai',sans-serif; font-size:15px; padding:12px 14px;
+    border:1px solid #D8CFB8; border-radius:5px; background:#FFFDF8; color:#1E3A28;
+  }
+  .liff-title { font-family:'Noto Serif Thai',serif; font-weight:700; font-size:22px; color:#1E3A28; margin:0 0 4px; }
+  .liff-sub { font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; margin:0 0 8px; line-height:1.7; }
+  .liff-btn {
+    font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:15px; color:#FFFFFF;
+    background:#BE7C3E; border:none; border-radius:5px; padding:14px; cursor:pointer;
+  }
+  .liff-btn:disabled { opacity:0.6; cursor:default; }
+  #liff-status { font-family:'Noto Sans Thai',sans-serif; font-size:13px; text-align:center; }
+  #liff-loading { font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:#4A564C; text-align:center; padding:60px 0; }
+</style>
+</head>
+<body>
+<div class="liff-wrap">
+  <div id="liff-loading">กำลังโหลด...</div>
+
+  <div id="liff-form-area" class="liff-card" style="display:none;">
+    <div>
+      <h1 class="liff-title">ลงทะเบียนอาคาร</h1>
+      <p class="liff-sub">กรอกข้อมูลอาคารและผู้ติดต่อ เพื่อรับการแจ้งเตือนก่อนถึงกำหนดตรวจสอบอาคาร</p>
+    </div>
+    <form id="liff-register-form" style="display:flex; flex-direction:column; gap:16px;">
+      <div class="liff-field">
+        <label for="f-name">ชื่อผู้ติดต่อ</label>
+        <input id="f-name" name="name" type="text" required>
+      </div>
+      <div class="liff-field">
+        <label for="f-phone">เบอร์โทร</label>
+        <input id="f-phone" name="phone" type="tel" required>
+      </div>
+      <div class="liff-field">
+        <label for="f-email">อีเมล</label>
+        <input id="f-email" name="email" type="email" required>
+      </div>
+      <div class="liff-field">
+        <label for="f-building">ชื่ออาคาร</label>
+        <input id="f-building" name="building_name" type="text" required>
+      </div>
+      <div class="liff-field">
+        <label for="f-type">ประเภทอาคาร (ตามมาตรา 32 ทวิ)</label>
+        <select id="f-type" name="building_type" required>
+          <option value="" selected disabled>เลือกประเภทอาคาร</option>
+          <option value="อาคารสูง (≥ 23 เมตร)">อาคารสูง (≥ 23 เมตร)</option>
+          <option value="อาคารขนาดใหญ่พิเศษ (≥ 10,000 ตร.ม.)">อาคารขนาดใหญ่พิเศษ (≥ 10,000 ตร.ม.)</option>
+          <option value="อาคารชุมนุมคน (≥ 1,000 ตร.ม. หรือ ≥ 500 คน)">อาคารชุมนุมคน (≥ 1,000 ตร.ม. หรือ ≥ 500 คน)</option>
+          <option value="โรงมหรสพ">โรงมหรสพ</option>
+          <option value="โรงแรม ตั้งแต่ 80 ห้องขึ้นไป">โรงแรม ตั้งแต่ 80 ห้องขึ้นไป</option>
+          <option value="อาคารชุด / อยู่อาศัยรวม ≥ 2,000 ตร.ม.">อาคารชุด / อยู่อาศัยรวม ≥ 2,000 ตร.ม.</option>
+          <option value="โรงงาน ≥ 5,000 ตร.ม.">โรงงาน ≥ 5,000 ตร.ม.</option>
+          <option value="ป้าย สูงหรือกว้าง ≥ 15 เมตร">ป้าย สูงหรือกว้าง ≥ 15 เมตร</option>
+          <option value="สถานบริการ ≥ 200 ตร.ม.">สถานบริการ ≥ 200 ตร.ม.</option>
+          <option value="อื่นๆ">อื่นๆ</option>
+        </select>
+      </div>
+      <div class="liff-field">
+        <label for="f-expiry">วันหมดอายุ อ.6/ร.1 ครั้งถัดไป</label>
+        <input id="f-expiry" name="expiry_date" type="date" required>
+      </div>
+      <button type="submit" class="liff-btn">ลงทะเบียนรับการแจ้งเตือน</button>
+      <span id="liff-status" role="status"></span>
+    </form>
+  </div>
+
+  <div id="liff-done" class="liff-card" style="display:none; text-align:center;">
+    <h1 class="liff-title">ลงทะเบียนสำเร็จ</h1>
+    <p class="liff-sub">ท่านจะได้รับข้อความแจ้งเตือนอัตโนมัติเมื่อใกล้ถึงรอบตรวจสอบอาคาร<br>ทั้งนี้ ทีมงานขออนุญาตติดต่อกลับท่านเมื่อใกล้ถึงรอบตรวจสอบอาคารค่ะ<br>ขอบคุณที่ติดต่อ Empower Best Solution</p>
+    <button id="liff-close-btn" class="liff-btn">ปิดหน้าต่างนี้</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var LIFF_ID = "2011500534-lO4GZZ0d";
+  var lineUserId = null;
+
+  function showForm() {
+    document.getElementById("liff-loading").style.display = "none";
+    document.getElementById("liff-form-area").style.display = "flex";
+  }
+
+  function showDone() {
+    document.getElementById("liff-form-area").style.display = "none";
+    document.getElementById("liff-done").style.display = "block";
+  }
+
+  liff
+    .init({ liffId: LIFF_ID })
+    .then(function () {
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        return;
+      }
+      return liff.getProfile().then(function (profile) {
+        lineUserId = profile.userId;
+        var nameField = document.getElementById("f-name");
+        if (profile.displayName && !nameField.value) {
+          nameField.value = profile.displayName;
+        }
+        showForm();
+      });
+    })
+    .catch(function (err) {
+      document.getElementById("liff-loading").textContent =
+        "ไม่สามารถเชื่อมต่อกับ LINE ได้ กรุณาเปิดหน้านี้จากแอป LINE อีกครั้ง";
+      console.error(err);
+    });
+
+  document.getElementById("liff-register-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var form = e.target;
+    var btn = form.querySelector("button[type=submit]");
+    var statusEl = document.getElementById("liff-status");
+    var data = {
+      name: form.querySelector("#f-name").value,
+      phone: form.querySelector("#f-phone").value,
+      email: form.querySelector("#f-email").value,
+      building_name: form.querySelector("#f-building").value,
+      building_type: form.querySelector("#f-type").value,
+      expiry_date: form.querySelector("#f-expiry").value,
+      line_user_id: lineUserId,
+    };
+    btn.disabled = true;
+    statusEl.style.color = "#4A564C";
+    statusEl.textContent = "กำลังส่งข้อมูล...";
+
+    fetch("/.netlify/functions/register-building", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then(function (res) {
+        return res.json().then(function (body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function (result) {
+        if (result.ok) {
+          showDone();
+        } else {
+          btn.disabled = false;
+          statusEl.style.color = "#B3423A";
+          statusEl.textContent =
+            (result.body && result.body.error) || "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง";
+        }
+      })
+      .catch(function () {
+        btn.disabled = false;
+        statusEl.style.color = "#B3423A";
+        statusEl.textContent = "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง";
+      });
+  });
+
+  document.getElementById("liff-close-btn").addEventListener("click", function () {
+    if (liff.isInClient()) {
+      liff.closeWindow();
+    } else {
+      window.location.href = "index.html";
+    }
+  });
+})();
+</script>
+</body>
+</html>

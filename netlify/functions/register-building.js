@@ -73,26 +73,44 @@ exports.handler = async (event) => {
     return jsonResponse(400, { error: "ข้อมูลไม่ถูกต้อง" });
   }
 
-  const { name, phone, email, building_name, building_type, expiry_date } = payload;
+  const { name, phone, email, building_name, building_type, expiry_date, line_user_id } = payload;
 
   if (!name || !phone || !email || !building_name || !building_type || !expiry_date) {
     return jsonResponse(400, { error: "กรุณากรอกข้อมูลให้ครบทุกช่อง" });
   }
 
   try {
-    // 1. Find existing contact by email or phone, else create a new one
+    // 1. Find existing contact by email, phone, or LINE user ID; else create a new one
+    const orConditions = [
+      `email.eq.${encodeURIComponent(email)}`,
+      `phone.eq.${encodeURIComponent(phone)}`,
+    ];
+    if (line_user_id) {
+      orConditions.push(`line_user_id.eq.${encodeURIComponent(line_user_id)}`);
+    }
     const existing = await supabaseRequest(
-      `contacts?or=(email.eq.${encodeURIComponent(email)},phone.eq.${encodeURIComponent(phone)})&limit=1`,
+      `contacts?or=(${orConditions.join(",")})&limit=1`,
       { method: "GET" }
     );
 
     let contact;
     if (existing && existing.length > 0) {
       contact = existing[0];
+      // If this registration came with a LINE user ID that isn't saved yet, link it now
+      if (line_user_id && !contact.line_user_id) {
+        const updated = await supabaseRequest(
+          `contacts?id=eq.${contact.id}`,
+          {
+            method: "PATCH",
+            body: JSON.stringify({ line_user_id }),
+          }
+        );
+        contact = updated[0];
+      }
     } else {
       const created = await supabaseRequest("contacts", {
         method: "POST",
-        body: JSON.stringify({ name, phone, email }),
+        body: JSON.stringify({ name, phone, email, line_user_id: line_user_id || null }),
       });
       contact = created[0];
     }
