@@ -406,7 +406,7 @@ REMINDER_MAIN = '''
           <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase;">แนะนำ · รับแจ้งเตือนทาง LINE ด้วย</span>
         </div>
         <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:20px; color:#F7F2E3;">ลงทะเบียนผ่าน LINE</h3>
-        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; line-height:1.8; color:rgba(247,242,227,0.8);">ขั้นตอนที่ 1 เพิ่มเพื่อน LINE OA ก่อน จากนั้นขั้นตอนที่ 2 กรอกข้อมูลลงทะเบียนในแอป LINE รับแจ้งเตือนทั้งทาง LINE และอีเมล</p>
+        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; line-height:1.8; color:rgba(247,242,227,0.8);">ขั้นตอนที่ 1 เพิ่มเพื่อน LINE OA ก่อน จากนั้นกดปุ่ม "ลงทะเบียนอาคาร" ในแชท LINE เพื่อกรอกข้อมูล รับแจ้งเตือนทั้งทาง LINE และอีเมล</p>
 
         <div id="line-step1-mobile" style="display:none; flex-direction:column; gap:8px;">
           <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#BE7C3E; font-weight:600;">ขั้นตอนที่ 1</span>
@@ -423,10 +423,11 @@ REMINDER_MAIN = '''
 
         <div style="display:flex; flex-direction:column; gap:8px;">
           <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#BE7C3E; font-weight:600;">ขั้นตอนที่ 2</span>
-          <a href="https://liff.line.me/2011500534-lO4GZZ0d" style="display:flex; align-items:center; justify-content:center; gap:8px; background:transparent; color:#F7F2E3; border:1.4px solid rgba(247,242,227,0.4); padding:13px 24px; border-radius:5px; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; text-decoration:none;">
-            กรอกข้อมูลลงทะเบียนในแอป LINE
-          </a>
-          <span id="line-step2-note" style="font-family:'Noto Sans Thai',sans-serif; font-size:11.5px; color:rgba(247,242,227,0.55); text-align:center;">เพิ่มเพื่อนแล้วค่อยกดปุ่มนี้ ต้องเปิดจากมือถือที่มีแอป LINE</span>
+          <div style="display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(247,242,227,0.08); border:1.4px dashed rgba(247,242,227,0.35); padding:13px 20px; border-radius:5px; text-align:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M8 12h8M8 8h8M8 16h5" stroke="#F7F2E3" stroke-width="1.6" stroke-linecap="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="#F7F2E3" stroke-width="1.6"/></svg>
+            <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:13.5px; color:#F7F2E3;">เปิดแชท Empower Best Solution ใน LINE แล้วกด "ลงทะเบียนอาคาร"</span>
+          </div>
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:11.5px; color:rgba(247,242,227,0.55); text-align:center;">เพิ่มเพื่อนแล้ว ระบบจะส่งข้อความต้อนรับพร้อมปุ่มลงทะเบียนให้อัตโนมัติ</span>
         </div>
       </div>
       <div style="display:flex; flex-direction:column; gap:16px; padding:32px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
@@ -447,13 +448,10 @@ REMINDER_MAIN = '''
     var isMobile = /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent);
     var mobileEl = document.getElementById('line-step1-mobile');
     var desktopEl = document.getElementById('line-step1-desktop');
-    var step2Note = document.getElementById('line-step2-note');
     if (isMobile) {
       if (mobileEl) mobileEl.style.display = 'flex';
-      if (step2Note) step2Note.textContent = 'เพิ่มเพื่อนแล้วค่อยกดปุ่มนี้เพื่อกรอกข้อมูล';
     } else {
       if (desktopEl) desktopEl.style.display = 'flex';
-      if (step2Note) step2Note.textContent = 'สแกน QR เพิ่มเพื่อนก่อน แล้วเปิดหน้านี้จากมือถืออีกครั้งเพื่อกรอกข้อมูล';
     }
   })();
   </script>
