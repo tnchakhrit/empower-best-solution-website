@@ -22,7 +22,7 @@ const RICH_MENU_DEFINITION = {
       bounds: { x: 0, y: 0, width: 1250, height: 843 },
       action: {
         type: "uri",
-        label: "ลงทะเบียนรับการแจ้งเตือนฟรี",
+        label: "รับแจ้งเตือนฟรี",
         uri: "https://liff.line.me/2011500534-lO4GZZ0d",
       },
     },
