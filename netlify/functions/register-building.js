@@ -7,6 +7,7 @@ const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 const FROM_EMAIL = "Empower Best Solution <notify@empowerbestsolution.com>";
+const LINE_CHANNEL_ACCESS_TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN;
 
 function jsonResponse(statusCode, data) {
   return {
@@ -51,6 +52,26 @@ async function sendEmail(to, subject, html) {
     }
   } catch (err) {
     console.error("Resend request failed:", err);
+  }
+}
+
+async function pushLineMessage(userId, messages) {
+  if (!userId || !LINE_CHANNEL_ACCESS_TOKEN) return;
+  try {
+    const res = await fetch("https://api.line.me/v2/bot/message/push", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${LINE_CHANNEL_ACCESS_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ to: userId, messages }),
+    });
+    if (!res.ok) {
+      const text = await res.text();
+      console.error("LINE push error:", res.status, text);
+    }
+  } catch (err) {
+    console.error("LINE push request failed:", err);
   }
 }
 
@@ -179,6 +200,22 @@ exports.handler = async (event) => {
         </div>
       `
     );
+
+    // 7. LINE push notification (เฉพาะกรณีลงทะเบียนผ่าน LIFF และมี line_user_id)
+    if (line_user_id) {
+      await pushLineMessage(line_user_id, [
+        {
+          type: "text",
+          text:
+            `ลงทะเบียนสำเร็จ ✅\n\n` +
+            `อาคาร: ${building_name}\n` +
+            `ประเภทอาคาร: ${building_type}\n` +
+            `วันหมดอายุ อ.6/ร.1: ${expiry_date}\n` +
+            `สถานะ: ${dayText}\n\n` +
+            `ทีมงานจะแจ้งเตือนท่านอีกครั้งทางไลน์และอีเมล เมื่อใกล้ถึงกำหนด (90 / 60 / 45 วันก่อนหมดอายุ)`,
+        },
+      ]);
+    }
 
     return jsonResponse(200, { success: true, days_remaining: days });
   } catch (err) {
