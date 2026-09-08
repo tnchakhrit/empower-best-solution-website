@@ -4,6 +4,9 @@
 // ไปหาผู้ติดต่อที่ยังผูกกับอาคารนั้น (และยังไม่ได้ยกเลิกรับแจ้งเตือน)
 // โดยจะส่งแต่ละระยะ (90/60/45) แค่ครั้งเดียวต่อ 1 อาคาร ต่อ 1 ผู้ติดต่อ
 // (เช็คจากตาราง notification_log กันการส่งซ้ำ)
+//
+// นอกจากนี้ ถ้าอาคารเลยกำหนดตรวจสอบมาแล้ว 180 วัน (และยังไม่เคยอัปเดตวันหมดอายุ
+// ใหม่ในระบบ) จะส่งข้อความเตือนให้อัปเดตข้อมูลอาคารอีก 1 ครั้ง (ครั้งเดียว ไม่ส่งซ้ำ)
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -17,6 +20,9 @@ const THRESHOLDS = [
   { days: 60, noticeType: "60_day" },
   { days: 45, noticeType: "45_day" },
 ];
+
+const OVERDUE_UPDATE_DAYS = 180;
+const OVERDUE_UPDATE_NOTICE_TYPE = "overdue_update_180";
 
 async function supabaseRequest(path, options) {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
@@ -93,10 +99,17 @@ exports.handler = async () => {
 
     for (const building of buildings) {
       const days = daysRemaining(building.inspection_expiry_date);
-      if (days < 0) continue; // เลยกำหนดไปแล้ว ไม่ต้องแจ้งเตือนล่วงหน้าซ้ำ
 
-      const dueThresholds = THRESHOLDS.filter((t) => days <= t.days);
-      if (dueThresholds.length === 0) continue; // ยังไม่ถึง 90 วันก่อนหมดอายุ
+      let dueThresholds;
+      if (days >= 0) {
+        dueThresholds = THRESHOLDS.filter((t) => days <= t.days);
+      } else if (days <= -OVERDUE_UPDATE_DAYS) {
+        // เลยกำหนดมาแล้วอย่างน้อย 180 วัน — เตือนให้อัปเดตข้อมูลอาคาร (ครั้งเดียว)
+        dueThresholds = [{ noticeType: OVERDUE_UPDATE_NOTICE_TYPE, kind: "overdue" }];
+      } else {
+        dueThresholds = []; // เลยกำหนดแล้วแต่ยังไม่ถึง 180 วัน หรือยังไม่ถึง 90 วันก่อนหมดอายุ
+      }
+      if (dueThresholds.length === 0) continue;
 
       const links = await supabaseRequest(
         `building_contacts?building_id=eq.${building.id}&is_active=eq.true`,
@@ -119,26 +132,42 @@ exports.handler = async () => {
           );
           if (existingLog && existingLog.length > 0) continue; // เคยส่งแล้ว ข้าม
 
+          const isOverdueUpdate = threshold.kind === "overdue";
           const dayText = `อีก ${days} วัน`;
+          const updateFormUrl = "https://empowerbestsolution.com/reminder-program.html#reminder-form";
 
           if (contact.email) {
             await sendEmail(
               contact.email,
-              `แจ้งเตือน: ${building.building_name} ใกล้ถึงกำหนดตรวจสอบอาคาร (เหลือ ${days} วัน)`,
-              `
-                <div style="font-family:sans-serif; line-height:1.7; color:#333;">
-                  <h2 style="color:#1E3A28;">แจ้งเตือนล่วงหน้า</h2>
-                  <p>เรียนคุณ ${contact.name},</p>
-                  <p>อาคาร <strong>${building.building_name}</strong> ของท่านใกล้ถึงกำหนดตรวจสอบอาคารประจำปีแล้ว</p>
-                  <p>
-                    <strong>ประเภทอาคาร:</strong> ${building.building_type}<br/>
-                    <strong>วันหมดอายุ อ.6/ร.1:</strong> ${building.inspection_expiry_date}<br/>
-                    <strong>สถานะ:</strong> ${dayText} จะถึงกำหนด
-                  </p>
-                  <p>กรุณาเตรียมความพร้อมสำหรับการตรวจสอบอาคารครั้งถัดไป หรือติดต่อทีมงานเพื่อขอรับบริการ</p>
-                  <p>สอบถามเพิ่มเติม โทร 062-956-5194 หรือ LINE OA @911hrhms</p>
-                </div>
-              `
+              isOverdueUpdate
+                ? `แจ้งเตือน: กรุณาอัปเดตข้อมูลอาคาร ${building.building_name}`
+                : `แจ้งเตือน: ${building.building_name} ใกล้ถึงกำหนดตรวจสอบอาคาร (เหลือ ${days} วัน)`,
+              isOverdueUpdate
+                ? `
+                  <div style="font-family:sans-serif; line-height:1.7; color:#333;">
+                    <h2 style="color:#1E3A28;">กรุณาอัปเดตข้อมูลอาคาร</h2>
+                    <p>เรียนคุณ ${contact.name},</p>
+                    <p>อาคาร <strong>${building.building_name}</strong> เลยกำหนดตรวจสอบอาคาร (อ.6/ร.1) ที่เคยแจ้งไว้ในระบบมาแล้วกว่า ${OVERDUE_UPDATE_DAYS} วัน (วันหมดอายุเดิม: ${building.inspection_expiry_date})</p>
+                    <p>หากท่านดำเนินการตรวจสอบและได้รับใบรับรองฉบับใหม่แล้ว กรุณาอัปเดตวันหมดอายุใหม่ในระบบ เพื่อให้เราแจ้งเตือนล่วงหน้าได้ถูกต้อง</p>
+                    <p>หากยังไม่ได้ดำเนินการตรวจสอบ สามารถติดต่อทีมงานเพื่อขอรับบริการได้เช่นกัน</p>
+                    <p><a href="${updateFormUrl}" style="color:#1E3A28; font-weight:600;">อัปเดตข้อมูลอาคาร</a></p>
+                    <p>สอบถามเพิ่มเติม โทร 062-956-5194 หรือ LINE OA @911hrhms</p>
+                  </div>
+                `
+                : `
+                  <div style="font-family:sans-serif; line-height:1.7; color:#333;">
+                    <h2 style="color:#1E3A28;">แจ้งเตือนล่วงหน้า</h2>
+                    <p>เรียนคุณ ${contact.name},</p>
+                    <p>อาคาร <strong>${building.building_name}</strong> ของท่านใกล้ถึงกำหนดตรวจสอบอาคารประจำปีแล้ว</p>
+                    <p>
+                      <strong>ประเภทอาคาร:</strong> ${building.building_type}<br/>
+                      <strong>วันหมดอายุ อ.6/ร.1:</strong> ${building.inspection_expiry_date}<br/>
+                      <strong>สถานะ:</strong> ${dayText} จะถึงกำหนด
+                    </p>
+                    <p>กรุณาเตรียมความพร้อมสำหรับการตรวจสอบอาคารครั้งถัดไป หรือติดต่อทีมงานเพื่อขอรับบริการ</p>
+                    <p>สอบถามเพิ่มเติม โทร 062-956-5194 หรือ LINE OA @911hrhms</p>
+                  </div>
+                `
             );
           }
 
@@ -146,12 +175,16 @@ exports.handler = async () => {
             await pushLineMessage(contact.line_user_id, [
               {
                 type: "text",
-                text:
-                  `แจ้งเตือนล่วงหน้า ⏰\n\n` +
-                  `อาคาร: ${building.building_name}\n` +
-                  `วันหมดอายุ อ.6/ร.1: ${building.inspection_expiry_date}\n` +
-                  `สถานะ: ${dayText}\n\n` +
-                  `กรุณาเตรียมความพร้อมสำหรับการตรวจสอบอาคารครั้งถัดไป หรือติดต่อทีมงานเพื่อขอรับบริการค่ะ`,
+                text: isOverdueUpdate
+                  ? `กรุณาอัปเดตข้อมูลอาคาร 📋\n\n` +
+                    `อาคาร: ${building.building_name}\n` +
+                    `เลยกำหนดตรวจสอบมาแล้วกว่า ${OVERDUE_UPDATE_DAYS} วัน (วันหมดอายุเดิม: ${building.inspection_expiry_date})\n\n` +
+                    `หากตรวจสอบและได้ใบรับรองใหม่แล้ว กรุณาอัปเดตวันหมดอายุใหม่ในระบบด้วยนะคะ หรือหากยังไม่ได้ตรวจสอบ ติดต่อทีมงานเพื่อขอรับบริการได้เลยค่ะ`
+                  : `แจ้งเตือนล่วงหน้า ⏰\n\n` +
+                    `อาคาร: ${building.building_name}\n` +
+                    `วันหมดอายุ อ.6/ร.1: ${building.inspection_expiry_date}\n` +
+                    `สถานะ: ${dayText}\n\n` +
+                    `กรุณาเตรียมความพร้อมสำหรับการตรวจสอบอาคารครั้งถัดไป หรือติดต่อทีมงานเพื่อขอรับบริการค่ะ`,
               },
             ]);
           }
