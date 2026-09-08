@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เช็ควันหมดอายุ | Empower Best Solution</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="assets/styles.css">
+<script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<style>
+  body { background:#F7F2E3; margin:0; }
+  .liff-wrap { max-width:480px; margin:0 auto; padding:32px 20px 60px; }
+  .liff-card { background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px; padding:28px 24px; display:flex; flex-direction:column; gap:18px; }
+  .liff-title { font-family:'Noto Serif Thai',serif; font-weight:700; font-size:22px; color:#1E3A28; margin:0 0 4px; }
+  .liff-sub { font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; margin:0 0 8px; line-height:1.7; }
+  .liff-btn {
+    font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:15px; color:#FFFFFF;
+    background:#BE7C3E; border:none; border-radius:5px; padding:14px; cursor:pointer; text-decoration:none;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #liff-loading { font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:#4A564C; text-align:center; padding:60px 0; }
+  .building-list { display:flex; flex-direction:column; gap:14px; }
+  .building-card { border:1px solid #E4DCC8; border-radius:8px; padding:18px; display:flex; flex-direction:column; gap:6px; }
+  .building-card-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .building-name { font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:15px; color:#1E3A28; }
+  .building-type { font-family:'Noto Sans Thai',sans-serif; font-size:12.5px; color:#4A564C; }
+  .building-expiry { font-family:'Noto Sans Thai',sans-serif; font-size:12.5px; color:#4A564C; }
+  .badge { font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; padding:4px 10px; border-radius:20px; white-space:nowrap; }
+  .badge-overdue { background:#F7DCD8; color:#A8352C; }
+  .badge-urgent { background:#F7E3D2; color:#A85A1E; }
+  .badge-soon { background:#FBF0D4; color:#8A6A1E; }
+  .badge-ok { background:#DCE8DE; color:#1E3A28; }
+</style>
+</head>
+<body>
+<div class="liff-wrap">
+  <div id="liff-loading">กำลังโหลด...</div>
+
+  <div id="liff-empty" class="liff-card" style="display:none; text-align:center;">
+    <h1 class="liff-title">ยังไม่มีอาคารในระบบ</h1>
+    <p class="liff-sub" id="liff-empty-message">ยังไม่พบข้อมูลอาคารที่ผูกกับบัญชี LINE นี้</p>
+    <a class="liff-btn" href="https://liff.line.me/2011500534-lO4GZZ0d">ลงทะเบียนอาคาร</a>
+  </div>
+
+  <div id="liff-result-area" style="display:none;">
+    <div style="margin-bottom:18px;">
+      <h1 class="liff-title">วันหมดอายุการตรวจสอบอาคาร</h1>
+      <p class="liff-sub">อาคารที่ลงทะเบียนไว้ เรียงจากใกล้ถึงกำหนดที่สุด</p>
+    </div>
+    <div id="building-list" class="building-list"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var LIFF_ID = "REPLACE_WITH_CHECK_LIFF_ID";
+
+  function showEmpty(message) {
+    document.getElementById("liff-loading").style.display = "none";
+    if (message) document.getElementById("liff-empty-message").textContent = message;
+    document.getElementById("liff-empty").style.display = "block";
+  }
+
+  function showError(message) {
+    document.getElementById("liff-loading").textContent = message;
+  }
+
+  function urgencyOf(days) {
+    if (days < 0) return { cls: "badge-overdue", label: "เลยกำหนดแล้ว" };
+    if (days <= 45) return { cls: "badge-urgent", label: days + " วัน" };
+    if (days <= 90) return { cls: "badge-soon", label: days + " วัน" };
+    return { cls: "badge-ok", label: days + " วัน" };
+  }
+
+  function formatThaiDate(dateStr) {
+    try {
+      var d = new Date(dateStr);
+      return d.toLocaleDateString("th-TH-u-ca-buddhist", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    } catch (e) {
+      return dateStr;
+    }
+  }
+
+  function renderBuildings(buildings) {
+    document.getElementById("liff-loading").style.display = "none";
+    document.getElementById("liff-result-area").style.display = "block";
+    var listEl = document.getElementById("building-list");
+    buildings.forEach(function (b) {
+      var urgency = urgencyOf(b.days_remaining);
+      var card = document.createElement("div");
+      card.className = "building-card";
+      card.innerHTML =
+        '<div class="building-card-top">' +
+          '<span class="building-name"></span>' +
+          '<span class="badge ' + urgency.cls + '"></span>' +
+        '</div>' +
+        '<span class="building-type"></span>' +
+        '<span class="building-expiry"></span>';
+      card.querySelector(".building-name").textContent = b.building_name;
+      card.querySelector(".badge").textContent = urgency.label;
+      card.querySelector(".building-type").textContent = b.building_type || "";
+      card.querySelector(".building-expiry").textContent =
+        "ครบกำหนดตรวจสอบ " + formatThaiDate(b.expiry_date);
+      listEl.appendChild(card);
+    });
+  }
+
+  liff
+    .init({ liffId: LIFF_ID })
+    .then(function () {
+      if (!liff.isLoggedIn()) {
+        liff.login();
+        return;
+      }
+      return liff.getProfile().then(function (profile) {
+        return fetch("/.netlify/functions/check-buildings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ line_user_id: profile.userId }),
+        });
+      }).then(function (res) {
+        return res.json().then(function (body) {
+          return { ok: res.ok, body: body };
+        });
+      }).then(function (result) {
+        if (!result.ok) {
+          showEmpty(result.body && result.body.error);
+          return;
+        }
+        var buildings = (result.body && result.body.buildings) || [];
+        if (buildings.length === 0) {
+          showEmpty();
+        } else {
+          renderBuildings(buildings);
+        }
+      });
+    })
+    .catch(function (err) {
+      showError("ไม่สามารถเชื่อมต่อกับ LINE ได้ กรุณาเปิดหน้านี้จากแอป LINE อีกครั้ง");
+      console.error(err);
+    });
+})();
+</script>
+</body>
+</html>
