@@ -393,12 +393,47 @@ REMINDER_MAIN = '''
     </div>
   </div>
 
+  <!-- CHOOSE PATH -->
+  <div style="display:flex; flex-direction:column; gap:28px; padding:0 64px 72px 64px;">
+    <div style="display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center;">
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:3px; color:#BE7C3E; text-transform:uppercase;">เลือกวิธีลงทะเบียน</span>
+      <h2 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:26px; color:#1E3A28;">อยากรับแจ้งเตือนผ่านช่องทางไหน?</h2>
+    </div>
+    <div class="grid-2">
+      <div style="display:flex; flex-direction:column; gap:16px; padding:32px; background:#1E3A28; border-radius:10px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 0 0-5 5v3.4c0 .9-.3 1.8-.9 2.5L4.5 16h15L18 13.9c-.6-.7-.9-1.6-.9-2.5V8a5 5 0 0 0-5-5Z" stroke="#BE7C3E" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase;">แนะนำ · รับแจ้งเตือนทาง LINE ด้วย</span>
+        </div>
+        <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:20px; color:#F7F2E3;">ลงทะเบียนผ่าน LINE</h3>
+        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; line-height:1.8; color:rgba(247,242,227,0.8);">เพิ่มเพื่อน LINE OA และกรอกข้อมูลในขั้นตอนเดียวจบ รับแจ้งเตือนทั้งทาง LINE และอีเมล</p>
+        <a href="https://liff.line.me/2011500534-lO4GZZ0d" style="margin-top:6px; display:flex; align-items:center; justify-content:center; gap:8px; background:#06C755; color:#FFFFFF; padding:14px 24px; border-radius:5px; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; text-decoration:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 0 0-5 5v3.4c0 .9-.3 1.8-.9 2.5L4.5 16h15L18 13.9c-.6-.7-.9-1.6-.9-2.5V8a5 5 0 0 0-5-5Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          เปิดใน LINE เพื่อลงทะเบียน
+        </a>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:11.5px; color:rgba(247,242,227,0.55); text-align:center;">ต้องเปิดจากมือถือที่มีแอป LINE</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px; padding:32px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#1E3A28" stroke-width="1.6"/><path d="M3 7l9 6 9-6" stroke="#1E3A28" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase;">ทางเลือก · อีเมลเท่านั้น</span>
+        </div>
+        <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:20px; color:#1E3A28;">ลงทะเบียนผ่านเว็บไซต์</h3>
+        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; line-height:1.8; color:#4A564C;">กรอกฟอร์มด้านล่าง เหมาะสำหรับคนที่ไม่สะดวกใช้ LINE รับแจ้งเตือนทางอีเมลเท่านั้น</p>
+        <a href="#reminder-form" style="margin-top:6px; display:flex; align-items:center; justify-content:center; gap:8px; background:transparent; color:#1E3A28; border:1.4px solid #1E3A28; padding:14px 24px; border-radius:5px; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; text-decoration:none;">
+          กรอกฟอร์มด้านล่าง
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- FORM -->
   <div class="stack-row" style="display:flex; gap:56px; padding:0 64px 72px 64px;">
     <form id="reminder-form" name="reminder-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you-reminder.html" style="flex:1; display:flex; flex-direction:column; gap:20px; padding:44px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
       <input type="hidden" name="form-name" value="reminder-registration">
       <p class="hidden-field"><label>อย่ากรอกช่องนี้ถ้าท่านเป็นมนุษย์: <input name="bot-field"></label></p>
       <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:22px; color:#1E3A28;">ลงทะเบียนรับการแจ้งเตือนฟรี</h3>
+      <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12.5px; color:#4A564C; line-height:1.7;">ฟอร์มนี้รับแจ้งเตือนทางอีเมลเท่านั้น หากต้องการรับแจ้งเตือนผ่าน LINE ด้วย แนะนำให้เลือก "ลงทะเบียนผ่าน LINE" ด้านบนแทน</span>
       <div class="form-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px;">
         <div style="display:flex; flex-direction:column; gap:6px;">
           <label for="r-name" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600;">ชื่อ-นามสกุล</label>
