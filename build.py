@@ -442,14 +442,6 @@ REMINDER_MAIN = '''
         ลงทะเบียนรับการแจ้งเตือน
       </button>
       <span id="reminder-status" role="status" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; text-align:center;"></span>
-      <div style="margin-top:8px; padding-top:20px; border-top:1px solid #E4DCC8; display:flex; flex-direction:column; align-items:center; gap:10px;">
-        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#1E3A28; font-weight:600; text-align:center;">อยากรับการแจ้งเตือนผ่าน LINE ด้วยไหม?</span>
-        <a href="https://line.me/R/ti/p/%40911hrhms" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; max-width:320px; background:#06C755; color:#FFFFFF; padding:13px 24px; border-radius:5px; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; text-decoration:none;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 0 0-5 5v3.4c0 .9-.3 1.8-.9 2.5L4.5 16h15L18 13.9c-.6-.7-.9-1.6-.9-2.5V8a5 5 0 0 0-5-5Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg>
-          เพิ่มเพื่อน LINE OA @911hrhms
-        </a>
-        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#4A564C; text-align:center; line-height:1.6;">เพิ่มเพื่อนแล้ว เปิดลิงก์ลงทะเบียนอีกครั้งจากในแอป LINE เพื่อรับแจ้งเตือนผ่าน LINE โดยอัตโนมัติ</span>
-      </div>
     </form>
     <script>
     (function () {
@@ -484,7 +476,7 @@ REMINDER_MAIN = '''
           })
           .then(function (result) {
             if (result.ok) {
-              window.location.href = '/thank-you-reminder.html';
+              window.location.href = '/thank-you-reminder.html?email=' + encodeURIComponent(data.email);
             } else {
               if (btn) btn.disabled = false;
               if (statusEl) {

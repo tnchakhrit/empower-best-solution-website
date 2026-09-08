@@ -81,8 +81,8 @@
   </div>
 
   <div id="liff-done" class="liff-card" style="display:none; text-align:center;">
-    <h1 class="liff-title">ลงทะเบียนสำเร็จ</h1>
-    <p class="liff-sub">ท่านจะได้รับข้อความแจ้งเตือนอัตโนมัติเมื่อใกล้ถึงรอบตรวจสอบอาคาร<br>ทั้งนี้ ทีมงานขออนุญาตติดต่อกลับท่านเมื่อใกล้ถึงรอบตรวจสอบอาคารค่ะ<br>ขอบคุณที่ติดต่อ Empower Best Solution</p>
+    <h1 id="liff-done-title" class="liff-title">ลงทะเบียนสำเร็จ</h1>
+    <p id="liff-done-message" class="liff-sub">ท่านจะได้รับข้อความแจ้งเตือนอัตโนมัติเมื่อใกล้ถึงรอบตรวจสอบอาคาร<br>ทั้งนี้ ทีมงานขออนุญาตติดต่อกลับท่านเมื่อใกล้ถึงรอบตรวจสอบอาคารค่ะ<br>ขอบคุณที่ติดต่อ Empower Best Solution</p>
     <button id="liff-close-btn" class="liff-btn">ปิดหน้าต่างนี้</button>
   </div>
 </div>
@@ -92,14 +92,58 @@
   var LIFF_ID = "2011500534-lO4GZZ0d";
   var lineUserId = null;
 
+  var params = new URLSearchParams(window.location.search);
+  var isLinkMode = params.get("mode") === "link" && !!params.get("email");
+  var linkEmail = params.get("email");
+
   function showForm() {
     document.getElementById("liff-loading").style.display = "none";
     document.getElementById("liff-form-area").style.display = "flex";
   }
 
-  function showDone() {
+  function showDone(title, messageHtml) {
+    document.getElementById("liff-loading").style.display = "none";
     document.getElementById("liff-form-area").style.display = "none";
+    if (title) document.getElementById("liff-done-title").textContent = title;
+    if (messageHtml) document.getElementById("liff-done-message").innerHTML = messageHtml;
     document.getElementById("liff-done").style.display = "block";
+  }
+
+  function showLoadingError(message) {
+    document.getElementById("liff-loading").textContent = message;
+  }
+
+  function linkExistingRegistration() {
+    document.getElementById("liff-loading").textContent = "กำลังเชื่อมบัญชี LINE...";
+    fetch("/.netlify/functions/link-line", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: linkEmail, line_user_id: lineUserId }),
+    })
+      .then(function (res) {
+        return res.json().then(function (body) {
+          return { ok: res.ok, body: body };
+        });
+      })
+      .then(function (result) {
+        if (result.ok) {
+          var buildings = (result.body && result.body.buildings) || [];
+          var message =
+            buildings.length > 0
+              ? "อาคารที่จะได้รับแจ้งเตือนผ่าน LINE:<br>" +
+                buildings.map(function (n) { return "• " + n; }).join("<br>")
+              : "ระบบจะแจ้งเตือนล่วงหน้าทาง LINE เมื่อใกล้ถึงกำหนดตรวจสอบอาคารค่ะ";
+          showDone("เชื่อมบัญชี LINE สำเร็จ", message);
+        } else {
+          showLoadingError(
+            (result.body && result.body.error) ||
+              "ไม่สามารถเชื่อมบัญชีได้ กรุณาลองใหม่อีกครั้ง หรือติดต่อทีมงาน"
+          );
+        }
+      })
+      .catch(function () {
+        showLoadingError("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+      });
   }
 
   liff
@@ -111,6 +155,10 @@
       }
       return liff.getProfile().then(function (profile) {
         lineUserId = profile.userId;
+        if (isLinkMode) {
+          linkExistingRegistration();
+          return;
+        }
         var nameField = document.getElementById("f-name");
         if (profile.displayName && !nameField.value) {
           nameField.value = profile.displayName;
