@@ -39,22 +39,11 @@ async function handleEvent(event) {
   if (event.type === "follow") {
     await replyMessage(event.replyToken, [
       {
-        type: "template",
-        altText: "ยินดีต้อนรับสู่ Empower Best Solution - กดลงทะเบียนอาคารเพื่อรับแจ้งเตือนฟรี",
-        template: {
-          type: "buttons",
-          text:
-            "ยินดีต้อนรับสู่ Empower Best Solution\n\n" +
-            "กดปุ่มด้านล่างเพื่อลงทะเบียนรับแจ้งเตือนฟรี\n\n" +
-            "ดูข้อมูลเพิ่มเติมที่ https://empowerbestsolution.com",
-          actions: [
-            {
-              type: "uri",
-              label: "ลงทะเบียนอาคาร",
-              uri: "https://liff.line.me/2011500534-lO4GZZ0d",
-            },
-          ],
-        },
+        type: "text",
+        text:
+          "ยินดีต้อนรับสู่ Empower Best Solution\n\n" +
+          "กดเมนูด้านล่างเพื่อลงทะเบียนรับแจ้งเตือนฟรี หรือเช็ควันที่ต้องตรวจสอบอาคารครั้งถัดไปได้เลยค่ะ\n\n" +
+          "ดูข้อมูลเพิ่มเติมได้ที่ https://empowerbestsolution.com",
       },
     ]);
     return;
