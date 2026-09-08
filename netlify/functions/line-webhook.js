@@ -45,7 +45,8 @@ async function handleEvent(event) {
           type: "buttons",
           text:
             "ยินดีต้อนรับสู่ Empower Best Solution\n\n" +
-            "กดปุ่มด้านล่างเพื่อลงทะเบียนอาคาร รับแจ้งเตือนก่อนถึงกำหนดตรวจสอบอาคารฟรี",
+            "กดปุ่มด้านล่างเพื่อลงทะเบียนรับแจ้งเตือนฟรี\n\n" +
+            "ดูข้อมูลเพิ่มเติมที่ https://empowerbestsolution.com",
           actions: [
             {
               type: "uri",
