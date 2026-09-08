@@ -406,12 +406,28 @@ REMINDER_MAIN = '''
           <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase;">แนะนำ · รับแจ้งเตือนทาง LINE ด้วย</span>
         </div>
         <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:20px; color:#F7F2E3;">ลงทะเบียนผ่าน LINE</h3>
-        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; line-height:1.8; color:rgba(247,242,227,0.8);">เพิ่มเพื่อน LINE OA และกรอกข้อมูลในขั้นตอนเดียวจบ รับแจ้งเตือนทั้งทาง LINE และอีเมล</p>
-        <a href="https://liff.line.me/2011500534-lO4GZZ0d" style="margin-top:6px; display:flex; align-items:center; justify-content:center; gap:8px; background:#06C755; color:#FFFFFF; padding:14px 24px; border-radius:5px; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; text-decoration:none;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 0 0-5 5v3.4c0 .9-.3 1.8-.9 2.5L4.5 16h15L18 13.9c-.6-.7-.9-1.6-.9-2.5V8a5 5 0 0 0-5-5Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg>
-          เปิดใน LINE เพื่อลงทะเบียน
-        </a>
-        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:11.5px; color:rgba(247,242,227,0.55); text-align:center;">ต้องเปิดจากมือถือที่มีแอป LINE</span>
+        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; line-height:1.8; color:rgba(247,242,227,0.8);">ขั้นตอนที่ 1 เพิ่มเพื่อน LINE OA ก่อน จากนั้นขั้นตอนที่ 2 กรอกข้อมูลลงทะเบียนในแอป LINE รับแจ้งเตือนทั้งทาง LINE และอีเมล</p>
+
+        <div id="line-step1-mobile" style="display:none; flex-direction:column; gap:8px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#BE7C3E; font-weight:600;">ขั้นตอนที่ 1</span>
+          <a href="https://line.me/R/ti/p/%40911hrhms" target="_blank" rel="noopener" style="display:flex; align-items:center; justify-content:center; gap:8px; background:#06C755; color:#FFFFFF; padding:14px 24px; border-radius:5px; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; text-decoration:none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 3a5 5 0 0 0-5 5v3.4c0 .9-.3 1.8-.9 2.5L4.5 16h15L18 13.9c-.6-.7-.9-1.6-.9-2.5V8a5 5 0 0 0-5-5Z" stroke="#FFFFFF" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            เพิ่มเพื่อน LINE OA @911hrhms
+          </a>
+        </div>
+        <div id="line-step1-desktop" style="display:none; flex-direction:column; align-items:center; gap:10px; background:#F7F2E3; border-radius:8px; padding:20px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#BE7C3E; font-weight:600; align-self:flex-start;">ขั้นตอนที่ 1</span>
+          <img src="data:image/png;base64,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" width="150" height="150" alt="QR code เพิ่มเพื่อน LINE OA @911hrhms" style="border-radius:4px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12.5px; color:#1E3A28; text-align:center;">สแกนด้วยมือถือเพื่อเพิ่มเพื่อน LINE OA @911hrhms</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#BE7C3E; font-weight:600;">ขั้นตอนที่ 2</span>
+          <a href="https://liff.line.me/2011500534-lO4GZZ0d" style="display:flex; align-items:center; justify-content:center; gap:8px; background:transparent; color:#F7F2E3; border:1.4px solid rgba(247,242,227,0.4); padding:13px 24px; border-radius:5px; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; text-decoration:none;">
+            กรอกข้อมูลลงทะเบียนในแอป LINE
+          </a>
+          <span id="line-step2-note" style="font-family:'Noto Sans Thai',sans-serif; font-size:11.5px; color:rgba(247,242,227,0.55); text-align:center;">เพิ่มเพื่อนแล้วค่อยกดปุ่มนี้ ต้องเปิดจากมือถือที่มีแอป LINE</span>
+        </div>
       </div>
       <div style="display:flex; flex-direction:column; gap:16px; padding:32px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
         <div style="display:flex; align-items:center; gap:10px;">
@@ -426,6 +442,21 @@ REMINDER_MAIN = '''
       </div>
     </div>
   </div>
+  <script>
+  (function () {
+    var isMobile = /Android|iPhone|iPad|iPod|Mobi/i.test(navigator.userAgent);
+    var mobileEl = document.getElementById('line-step1-mobile');
+    var desktopEl = document.getElementById('line-step1-desktop');
+    var step2Note = document.getElementById('line-step2-note');
+    if (isMobile) {
+      if (mobileEl) mobileEl.style.display = 'flex';
+      if (step2Note) step2Note.textContent = 'เพิ่มเพื่อนแล้วค่อยกดปุ่มนี้เพื่อกรอกข้อมูล';
+    } else {
+      if (desktopEl) desktopEl.style.display = 'flex';
+      if (step2Note) step2Note.textContent = 'สแกน QR เพิ่มเพื่อนก่อน แล้วเปิดหน้านี้จากมือถืออีกครั้งเพื่อกรอกข้อมูล';
+    }
+  })();
+  </script>
 
   <!-- FORM -->
   <div class="stack-row" style="display:flex; gap:56px; padding:0 64px 72px 64px;">
