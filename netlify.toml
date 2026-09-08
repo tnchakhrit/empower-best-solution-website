@@ -7,6 +7,9 @@
 [functions."send-reminders"]
   schedule = "0 2 * * *"
 
+[functions."send-admin-digest"]
+  schedule = "30 2 * * *"
+
 [[redirects]]
   from = "/home"
   to = "/"
