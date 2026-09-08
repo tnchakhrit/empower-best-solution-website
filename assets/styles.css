@@ -147,3 +147,45 @@ summary svg { transition: transform 0.15s ease; }
   h1 { font-size: 24px !important; }
   .container > div { padding-left: 18px !important; padding-right: 18px !important; }
 }
+
+/* ============================================================
+   Sparkle / shine accents — draws the eye to "ไม่มีค่าใช้จ่าย" and
+   "ฟรี" specifically (used sparingly; keep it tasteful, not flashy)
+   ============================================================ */
+.sparkle-mini {
+  display: inline-block;
+  animation: sparkle-twinkle 1.8s ease-in-out infinite;
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.5) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.05) rotate(15deg); }
+}
+
+.badge-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-shine::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(247, 242, 227, 0.65), transparent);
+  transform: skewX(-20deg);
+  animation: shine-sweep 3.4s ease-in-out infinite;
+}
+
+@keyframes shine-sweep {
+  0% { left: -60%; }
+  38% { left: 130%; }
+  100% { left: 130%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkle-mini { animation: none; opacity: 0.9; }
+  .badge-shine::after { animation: none; display: none; }
+}
