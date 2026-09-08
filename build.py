@@ -589,13 +589,6 @@ REMINDER_MAIN = '''
         </div>
       </div>
       <div style="display:flex; gap:14px; align-items:flex-start; padding:22px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><circle cx="12" cy="12" r="9" stroke="#1E3A28" stroke-width="1.6"/><path d="M9 9l6 6M15 9l-6 6" stroke="#1E3A28" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <div style="display:flex; flex-direction:column; gap:4px;">
-          <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:14px; color:#1E3A28;">ยกเลิกได้ทุกเมื่อ</span>
-          <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C;">ยกเลิกรับแจ้งเตือนได้จากลิงก์ท้ายอีเมล/LINE</span>
-        </div>
-      </div>
-      <div style="display:flex; gap:14px; align-items:flex-start; padding:22px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M12 3 4 6v5c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-3Z" stroke="#1E3A28" stroke-width="1.6" stroke-linejoin="round"/></svg>
         <div style="display:flex; flex-direction:column; gap:4px;">
           <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:14px; color:#1E3A28;">ข้อมูลปลอดภัยตาม PDPA</span>
