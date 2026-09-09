@@ -548,7 +548,7 @@ REMINDER_MAIN = '''
           <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase;">แนะนำ · รับแจ้งเตือนทาง LINE ด้วย</span>
         </div>
         <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:20px; color:#F7F2E3;">ลงทะเบียนผ่าน LINE</h3>
-        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; line-height:1.8; color:rgba(247,242,227,0.8);">ขั้นตอนที่ 1 เพิ่มเพื่อน LINE OA ก่อน จากนั้นกดปุ่ม "ลงทะเบียนอาคาร" ในแชท LINE เพื่อกรอกข้อมูล รับแจ้งเตือนทั้งทาง LINE และอีเมล</p>
+        <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; line-height:1.8; color:rgba(247,242,227,0.8);">ขั้นตอนที่ 1 เพิ่มเพื่อน LINE OA ก่อน จากนั้นกดปุ่ม "ลงทะเบียนรับการแจ้งเตือนฟรี" ในแชท LINE เพื่อกรอกข้อมูล รับแจ้งเตือนทั้งทาง LINE และอีเมล</p>
 
         <div id="line-step1-mobile" style="display:none; flex-direction:column; gap:8px;">
           <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#BE7C3E; font-weight:600;">ขั้นตอนที่ 1</span>
@@ -567,7 +567,7 @@ REMINDER_MAIN = '''
           <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#BE7C3E; font-weight:600;">ขั้นตอนที่ 2</span>
           <div style="display:flex; align-items:center; justify-content:center; gap:8px; background:rgba(247,242,227,0.08); border:1.4px dashed rgba(247,242,227,0.35); padding:13px 20px; border-radius:5px; text-align:center;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;"><path d="M8 12h8M8 8h8M8 16h5" stroke="#F7F2E3" stroke-width="1.6" stroke-linecap="round"/><rect x="3" y="4" width="18" height="16" rx="2" stroke="#F7F2E3" stroke-width="1.6"/></svg>
-            <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:13.5px; color:#F7F2E3;">เปิดแชท Empower Best Solution ใน LINE แล้วกด "ลงทะเบียนอาคาร"</span>
+            <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:13.5px; color:#F7F2E3;">เปิดแชท Empower Best Solution ใน LINE แล้วกด "ลงทะเบียนรับการแจ้งเตือนฟรี"</span>
           </div>
           <span style="font-family:'Noto Sans Thai',sans-serif; font-size:11.5px; color:rgba(247,242,227,0.55); text-align:center;">เพิ่มเพื่อนแล้ว ระบบจะส่งข้อความต้อนรับพร้อมปุ่มลงทะเบียนให้อัตโนมัติ</span>
         </div>
