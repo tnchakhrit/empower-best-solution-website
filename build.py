@@ -6,6 +6,8 @@ import os
 
 OUT_DIR = os.path.dirname(os.path.abspath(__file__))
 
+SITE_URL = "https://empowerbestsolution.com"
+
 LOGO_DARK = '<img src="assets/logo-icon-dark.png" alt="Empower Best Solution" style="height:40px; width:auto; display:block;">'
 
 LOGO_CREAM = '<img src="assets/logo-icon-cream.png" alt="Empower Best Solution" style="height:32px; width:auto; display:block;">'
@@ -102,6 +104,30 @@ FOOTER = '''  <!-- FOOTER -->
 
 
 def page(title, description, active_href, main_content, extra_head=""):
+    canonical_path = "" if active_href == "index.html" else active_href
+    canonical_url = SITE_URL + "/" + canonical_path
+    og_image_url = SITE_URL + "/assets/og-image.png"
+
+    schema_json = '''{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Empower Best Solution Co., Ltd.",
+  "alternateName": "Empower Best Solution",
+  "description": "บริการตรวจสอบอาคารตาม พ.ร.บ. ควบคุมอาคาร พ.ศ. 2522 โดยทีมวิศวกรขึ้นทะเบียน ก.ย.ผ. พร้อมโปรแกรมเตือนตรวจสอบอาคารฟรี",
+  "image": "''' + og_image_url + '''",
+  "url": "''' + SITE_URL + '''/",
+  "telephone": "+66-62-956-5194",
+  "email": "empower.bestsolution2024@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "59/109 หมู่บ้านเดอะ วอเตอร์เฮ้าส์ ซอยบางบอน 3 ซอย 12 แขวงหลักสอง เขตบางแค",
+    "addressLocality": "กรุงเทพมหานคร",
+    "postalCode": "10160",
+    "addressCountry": "TH"
+  },
+  "areaServed": "TH"
+}'''
+
     return '''<!doctype html>
 <html lang="th">
 <head>
@@ -109,9 +135,26 @@ def page(title, description, active_href, main_content, extra_head=""):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>''' + title + '''</title>
 <meta name="description" content="''' + description + '''">
+<link rel="canonical" href="''' + canonical_url + '''">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 48 48%27%3E%3Crect width=%2748%27 height=%2748%27 rx=%278%27 fill=%27%231E3A28%27/%3E%3Cpath d=%27M8 38V20l7-9 5 7v20%27 stroke=%27%23F7F2E3%27 stroke-width=%272.2%27 fill=%27none%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M19 38V15l5-7 5 7v23%27 stroke=%27%23F7F2E3%27 stroke-width=%272.2%27 fill=%27none%27 stroke-linejoin=%27round%27/%3E%3Cpath d=%27M29 38V21l5-7 7 9v15%27 stroke=%27%23F7F2E3%27 stroke-width=%272.2%27 fill=%27none%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <link rel="stylesheet" href="assets/styles.css">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Empower Best Solution">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="''' + title + '''">
+<meta property="og:description" content="''' + description + '''">
+<meta property="og:url" content="''' + canonical_url + '''">
+<meta property="og:image" content="''' + og_image_url + '''">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="''' + title + '''">
+<meta name="twitter:description" content="''' + description + '''">
+<meta name="twitter:image" content="''' + og_image_url + '''">
+<script type="application/ld+json">
+''' + schema_json + '''
+</script>
 ''' + extra_head + '''</head>
 <body>
 <div class="container">
@@ -972,3 +1015,53 @@ if __name__ == "__main__":
             CONTACT_MAIN,
         ))
     print("wrote contact.html")
+
+    # ------------------------------------------------------------
+    # sitemap.xml — เฉพาะหน้าเนื้อหาหลัก 6 หน้า (ไม่รวมหน้า thank-you / liff
+    # ซึ่งเป็นหน้าใช้งานภายใน ไม่ใช่หน้าที่อยากให้ค้นเจอบน Google)
+    # ------------------------------------------------------------
+    SITEMAP_PAGES = [
+        ("", "1.0"),
+        ("about.html", "0.8"),
+        ("reminder-program.html", "0.9"),
+        ("services.html", "0.9"),
+        ("legal-knowledge.html", "0.7"),
+        ("contact.html", "0.8"),
+    ]
+    lastmod = __import__("datetime").date.today().isoformat()
+    sitemap_entries = []
+    for path, priority in SITEMAP_PAGES:
+        sitemap_entries.append(
+            "  <url>\n"
+            "    <loc>" + SITE_URL + "/" + path + "</loc>\n"
+            "    <lastmod>" + lastmod + "</lastmod>\n"
+            "    <priority>" + priority + "</priority>\n"
+            "  </url>"
+        )
+    sitemap_xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(sitemap_entries) + "\n"
+        "</urlset>\n"
+    )
+    with open(os.path.join(OUT_DIR, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(sitemap_xml)
+    print("wrote sitemap.xml")
+
+    # ------------------------------------------------------------
+    # robots.txt — เปิดให้ทุก crawler เข้าได้ทุกหน้า ยกเว้นหน้าใช้งานภายใน
+    # (thank-you / liff) ที่ไม่มีประโยชน์ต่อผลการค้นหา
+    # ------------------------------------------------------------
+    robots_txt = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /thank-you.html\n"
+        "Disallow: /thank-you-reminder.html\n"
+        "Disallow: /liff-check.html\n"
+        "Disallow: /liff-register.html\n"
+        "\n"
+        "Sitemap: " + SITE_URL + "/sitemap.xml\n"
+    )
+    with open(os.path.join(OUT_DIR, "robots.txt"), "w", encoding="utf-8") as f:
+        f.write(robots_txt)
+    print("wrote robots.txt")

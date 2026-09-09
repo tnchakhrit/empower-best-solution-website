@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /thank-you.html
+Disallow: /thank-you-reminder.html
+Disallow: /liff-check.html
+Disallow: /liff-register.html
+
+Sitemap: https://empowerbestsolution.com/sitemap.xml
