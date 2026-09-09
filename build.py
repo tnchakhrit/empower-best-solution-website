@@ -823,9 +823,8 @@ CONTACT_MAIN = '''
       </a>
     </div>
 
-    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html" style="flex:1.1; display:flex; flex-direction:column; gap:20px; padding:44px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
-      <input type="hidden" name="form-name" value="contact">
-      <p class="hidden-field"><label>อย่ากรอกช่องนี้ถ้าท่านเป็นมนุษย์: <input name="bot-field"></label></p>
+    <form id="contact-form" name="contact" style="flex:1.1; display:flex; flex-direction:column; gap:20px; padding:44px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:10px;">
+      <p class="hidden-field"><label>อย่ากรอกช่องนี้ถ้าท่านเป็นมนุษย์: <input name="bot-field" id="c-bot-field"></label></p>
       <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:22px; color:#1E3A28;">ส่งข้อความถึงเรา</h3>
       <div class="form-grid" style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px;">
         <div style="display:flex; flex-direction:column; gap:6px;">
@@ -850,7 +849,61 @@ CONTACT_MAIN = '''
         </div>
       </div>
       <button type="submit" class="btn-amber" style="margin-top:6px; background:#BE7C3E; color:#FFFFFF; padding:15px 24px; border-radius:5px; border:none; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:15px; cursor:pointer;">ส่งข้อความ</button>
+      <span id="contact-status" role="status" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; text-align:center;"></span>
     </form>
+    <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      var statusEl = document.getElementById('contact-status');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var data = {
+          name: form.querySelector('#c-name').value,
+          phone: form.querySelector('#c-phone').value,
+          email: form.querySelector('#c-email').value,
+          building_name: form.querySelector('#c-building').value,
+          message: form.querySelector('#c-message').value,
+          'bot-field': form.querySelector('#c-bot-field').value
+        };
+        if (btn) btn.disabled = true;
+        if (statusEl) {
+          statusEl.style.color = '#4A564C';
+          statusEl.textContent = 'กำลังส่งข้อความ...';
+        }
+        fetch('/.netlify/functions/contact-message', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })
+          .then(function (res) {
+            return res.json().then(function (body) {
+              return { ok: res.ok, body: body };
+            });
+          })
+          .then(function (result) {
+            if (result.ok) {
+              window.location.href = '/thank-you.html';
+            } else {
+              if (btn) btn.disabled = false;
+              if (statusEl) {
+                statusEl.style.color = '#B3423A';
+                statusEl.textContent =
+                  (result.body && result.body.error) || 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+              }
+            }
+          })
+          .catch(function () {
+            if (btn) btn.disabled = false;
+            if (statusEl) {
+              statusEl.style.color = '#B3423A';
+              statusEl.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+            }
+          });
+      });
+    })();
+    </script>
 
   </div>
 
