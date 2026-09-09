@@ -826,6 +826,15 @@ CONTACT_MAIN = '''
     <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:15px; line-height:1.8; color:#4A564C;">ส่งรายละเอียดอาคารของท่าน เราจะติดต่อกลับภายใน 24 ชั่วโมง พร้อมประเมินขอบเขตงานและจัดทำใบเสนอราคาให้ฟรี</p>
   </div>
 
+  <!-- REMINDER CTA -->
+  <div class="stack-row" style="display:flex; align-items:center; justify-content:space-between; gap:48px; margin:0 64px 40px 64px; padding:40px 48px; background:#1E3A28; border-radius:8px;">
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:18px; color:#F7F2E3;">อยากให้เราแจ้งเตือนก่อนถึงรอบตรวจสอบอาคาร?</span>
+      <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; color:rgba(247,242,227,0.75);">ลงทะเบียนโปรแกรมเตือนตรวจสอบอาคารได้ฟรี ไม่ต้องรอกรอกฟอร์มด้านล่าง</span>
+    </div>
+    <a href="reminder-program.html" class="btn-amber" style="background:#BE7C3E; color:#FFFFFF; padding:15px 26px; border-radius:4px; border:none; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; cursor:pointer; white-space:nowrap; display:inline-block;">ไปที่โปรแกรมเตือนตรวจสอบอาคาร</a>
+  </div>
+
   <!-- CONTACT INFO + FORM -->
   <div class="stack-row" style="display:flex; gap:56px; padding:16px 64px 56px 64px;">
 
@@ -948,15 +957,6 @@ CONTACT_MAIN = '''
     })();
     </script>
 
-  </div>
-
-  <!-- REMINDER CTA -->
-  <div class="stack-row" style="display:flex; align-items:center; justify-content:space-between; gap:48px; margin:0 64px 96px 64px; padding:40px 48px; background:#1E3A28; border-radius:8px;">
-    <div style="display:flex; flex-direction:column; gap:6px;">
-      <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:18px; color:#F7F2E3;">อยากให้เราแจ้งเตือนก่อนถึงรอบตรวจสอบอาคาร?</span>
-      <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13.5px; color:rgba(247,242,227,0.75);">ลงทะเบียนโปรแกรมเตือนตรวจสอบอาคารได้ฟรี ไม่ต้องรอกรอกฟอร์มด้านบน</span>
-    </div>
-    <a href="reminder-program.html" class="btn-amber" style="background:#BE7C3E; color:#FFFFFF; padding:15px 26px; border-radius:4px; border:none; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:14px; cursor:pointer; white-space:nowrap; display:inline-block;">ไปที่โปรแกรมเตือนตรวจสอบอาคาร</a>
   </div>
 '''
 
