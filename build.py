@@ -103,8 +103,10 @@ FOOTER = '''  <!-- FOOTER -->
 '''
 
 
-def page(title, description, active_href, main_content, extra_head=""):
-    canonical_path = "" if active_href == "index.html" else active_href
+def page(title, description, active_href, main_content, extra_head="", url_path=None):
+    if url_path is None:
+        url_path = active_href
+    canonical_path = "" if url_path == "index.html" else url_path
     canonical_url = SITE_URL + "/" + canonical_path
     og_image_url = SITE_URL + "/assets/og-image.png"
 
@@ -162,6 +164,87 @@ def page(title, description, active_href, main_content, extra_head=""):
 </body>
 </html>
 '''
+
+
+# ------------------------------------------------------------------
+# ARTICLES (บทความความรู้ตามกฎหมาย — เพิ่มเพื่อ SEO เฟส 2)
+# ------------------------------------------------------------------
+
+ARTICLES = [
+    ("inspection-schedule.html", "ตรวจสอบอาคารกี่ปีครั้ง? ตรวจสอบใหญ่ vs ตรวจสอบประจำปี ต่างกันอย่างไร"),
+    ("inspection-cost.html", "ค่าตรวจสอบอาคารราคาเท่าไหร่? ปัจจัยที่มีผลต่อราคา"),
+    ("condo-inspection.html", "นิติบุคคลอาคารชุด/คอนโด ต้องตรวจสอบอาคารไหม ทำอย่างไร"),
+    ("por-1-certificate.html", "ใบ ร.1 คืออะไร? ขั้นตอนขอใบรับรองตรวจสอบอาคาร"),
+    ("which-buildings-must-inspect.html", "อาคารแบบไหนต้องตรวจสอบตามกฎหมายบ้าง เช็ค 9 ประเภทอาคารควบคุม"),
+]
+
+
+def related_articles_box(current_href=None):
+    items = []
+    for href, label in ARTICLES:
+        if href == current_href:
+            continue
+        items.append(
+            '<a href="' + href + '" style="display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 20px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px; font-family:\'Noto Sans Thai\',sans-serif; font-size:14px; color:#1E3A28; font-weight:600;">'
+            + label
+            + '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; color:#BE7C3E;"><path d="M9 6l6 6-6 6" stroke="#BE7C3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
+        )
+    return '''
+  <!-- RELATED ARTICLES -->
+  <div style="display:flex; flex-direction:column; gap:20px; margin:0 64px 56px 64px; padding:40px; background:#F7F2E3; border-radius:10px;">
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:2px; color:#BE7C3E; text-transform:uppercase;">บทความที่เกี่ยวข้อง</span>
+    <div class="grid-3" style="display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:14px;">
+''' + "\n".join(items) + '''
+    </div>
+  </div>
+'''
+
+
+def article_page_main(eyebrow, title_h1, intro, sections_html, current_href, cta_title="ไม่แน่ใจว่าอาคารของท่านเข้าข่ายหรือไม่?", cta_sub="ส่งข้อมูลอาคารมาให้ทีมวิศวกรของเราประเมินให้ฟรี"):
+    return '''
+  <!-- HERO -->
+  <div style="display:flex; flex-direction:column; gap:18px; padding:72px 64px 8px 64px; max-width:820px;">
+    <a href="legal-knowledge.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#BE7C3E; font-weight:600;">&larr; ความรู้ตามกฎหมาย</a>
+    <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:3px; color:#BE7C3E; text-transform:uppercase;">''' + eyebrow + '''</span>
+    <h1 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:32px; line-height:1.45; color:#1E3A28;">''' + title_h1 + '''</h1>
+    <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:15px; line-height:1.8; color:#4A564C;">''' + intro + '''</p>
+  </div>
+
+  <!-- BODY -->
+  <div style="display:flex; flex-direction:column; gap:36px; padding:24px 64px 56px 64px; max-width:880px;">
+''' + sections_html + '''
+  </div>
+''' + related_articles_box(current_href) + '''
+  <!-- CTA BAND -->
+  <div class="stack-row" style="display:flex; align-items:center; justify-content:space-between; gap:48px; margin:0 64px 96px 64px; padding:48px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
+    <div style="display:flex; flex-direction:column; gap:10px;">
+      <h3 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:24px; color:#1E3A28;">''' + cta_title + '''</h3>
+      <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:14px; color:#4A564C;">''' + cta_sub + '''</p>
+    </div>
+    <a href="contact.html" class="btn-amber" style="background:#BE7C3E; color:#FFFFFF; padding:16px 28px; border-radius:4px; border:none; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:15px; cursor:pointer; white-space:nowrap; display:inline-block;">ปรึกษาเราฟรี</a>
+  </div>
+'''
+
+
+def article_section(heading, body_html):
+    return '''
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <h2 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:21px; color:#1E3A28;">''' + heading + '''</h2>
+''' + body_html + '''
+    </div>
+'''
+
+
+def article_p(text):
+    return '      <p style="margin:0; font-family:\'Noto Sans Thai\',sans-serif; font-size:14.5px; line-height:1.9; color:#4A564C;">' + text + '</p>'
+
+
+def article_list(items):
+    lis = "\n".join(
+        '      <li style="display:flex; gap:10px; align-items:flex-start; font-family:\'Noto Sans Thai\',sans-serif; font-size:14.5px; line-height:1.8; color:#4A564C;"><div style="width:5px; height:5px; border-radius:50%; background:#BE7C3E; flex-shrink:0; margin-top:9px;"></div><span>' + item + '</span></li>'
+        for item in items
+    )
+    return '    <ul style="margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:10px;">\n' + lis + '\n    </ul>'
 
 
 # ------------------------------------------------------------------
@@ -806,7 +889,7 @@ LEGAL_MAIN = '''
 
     </div>
   </div>
-
+''' + related_articles_box() + '''
   <!-- CTA BAND -->
   <div class="stack-row" style="display:flex; align-items:center; justify-content:space-between; gap:48px; margin:0 64px 96px 64px; padding:48px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
     <div style="display:flex; flex-direction:column; gap:10px;">
@@ -816,6 +899,167 @@ LEGAL_MAIN = '''
     <a href="contact.html" class="btn-amber" style="background:#BE7C3E; color:#FFFFFF; padding:16px 28px; border-radius:4px; border:none; font-family:'Noto Sans Thai',sans-serif; font-weight:600; font-size:15px; cursor:pointer; white-space:nowrap; display:inline-block;">ปรึกษาเราฟรี</a>
   </div>
 '''
+
+
+ARTICLE_SCHEDULE_MAIN = article_page_main(
+    "ความรู้ตามกฎหมาย",
+    "ตรวจสอบอาคารกี่ปีครั้ง? ตรวจสอบใหญ่ vs ตรวจสอบประจำปี ต่างกันอย่างไร",
+    "เจ้าของอาคารหลายท่านสับสนระหว่าง &quot;ตรวจสอบใหญ่&quot; กับ &quot;ตรวจสอบประจำปี&quot; ว่าต่างกันอย่างไร ต้องทำอันไหนเมื่อไหร่ บทความนี้สรุปให้เข้าใจง่ายๆ",
+    article_section(
+        "ตรวจสอบใหญ่ (ตรวจสอบใหญ่ทุก 5 ปี) คืออะไร",
+        article_p("เป็นการตรวจสอบอาคารและอุปกรณ์ประกอบอย่างละเอียดครบทุกระบบ ทั้งโครงสร้างอาคาร ระบบไฟฟ้า ระบบประปา ระบบระบายอากาศ ระบบป้องกันอัคคีภัย ลิฟต์ และระบบอื่นๆ ที่เกี่ยวข้องกับความปลอดภัย ต้องทำครั้งแรกภายในระยะเวลาที่กฎหมายกำหนดหลังอาคารได้รับใบรับรองการก่อสร้าง (แบบ อ.6) จากนั้นทำซ้ำทุก 5 ปี")
+        + article_p("ผู้ตรวจสอบต้องเป็นวิศวกรหรือสถาปนิกที่ขึ้นทะเบียนเป็นผู้ตรวจสอบอาคารกับกรมโยธาธิการและผังเมือง (ก.ย.ผ.) เท่านั้น จะให้ใครมาตรวจเองไม่ได้")
+    )
+    + article_section(
+        "ตรวจสอบประจำปี คืออะไร",
+        article_p("เป็นการตรวจสอบที่ทำทุกปีในปีที่ไม่ตรงกับรอบตรวจสอบใหญ่ โดยตรวจตามแผนและจุดที่ผู้ตรวจสอบใหญ่ได้ให้คำแนะนำไว้จากการตรวจครั้งล่าสุด เน้นจุดที่มีความเสี่ยงหรือมีแนวโน้มเสื่อมสภาพเร็ว เพื่อยื่นขอต่ออายุใบรับรองการตรวจสอบ (ใบ ร.1) ทุกปี")
+    )
+    + article_section(
+        "สรุปความแตกต่าง",
+        article_list([
+            "<strong>ขอบเขตงาน</strong> — ตรวจสอบใหญ่ครอบคลุมทุกระบบอย่างละเอียด ส่วนตรวจสอบประจำปีเน้นจุดเสี่ยงตามคำแนะนำเดิม",
+            "<strong>ความถี่</strong> — ตรวจสอบใหญ่ทำทุก 5 ปี ตรวจสอบประจำปีทำทุกปี (ในปีที่ไม่ตรงกับรอบตรวจใหญ่)",
+            "<strong>ผู้ตรวจ</strong> — ทั้งสองแบบต้องลงนามโดยวิศวกร/สถาปนิกผู้ตรวจสอบอาคารที่ขึ้นทะเบียนกับกรมโยธาธิการฯ เท่านั้น",
+            "<strong>ผลลัพธ์</strong> — ทั้งสองแบบใช้ยื่นขอใบ ร.1 เพื่อรับรองว่าอาคารยังปลอดภัยและใช้งานได้ตามกฎหมาย",
+        ])
+    )
+    + article_section(
+        "อาคารของท่านต้องทำอันไหน?",
+        article_p("ถ้าอาคารยังไม่เคยตรวจสอบใหญ่มาก่อน หรือครบรอบ 5 ปีแล้ว ต้องเริ่มจากตรวจสอบใหญ่ก่อนเสมอ ส่วนปีถัดๆ ไปที่ไม่ตรงกับรอบ 5 ปี จึงทำตรวจสอบประจำปีแทน หากไม่แน่ใจว่าอาคารของท่านอยู่ในรอบไหน ส่งข้อมูลมาให้ทีมเราตรวจสอบประวัติให้ได้ฟรี")
+    ),
+    "inspection-schedule.html",
+)
+
+
+ARTICLE_COST_MAIN = article_page_main(
+    "ความรู้ตามกฎหมาย",
+    "ค่าตรวจสอบอาคารราคาเท่าไหร่? ปัจจัยที่มีผลต่อราคา",
+    "คำถามที่พบบ่อยที่สุดคือ &quot;ตรวจสอบอาคารราคาเท่าไหร่&quot; คำตอบคือไม่มีราคาตายตัว เพราะขึ้นอยู่กับหลายปัจจัย บทความนี้อธิบายว่าอะไรบ้างที่มีผลต่อราคา เพื่อให้ประเมินงบประมาณเบื้องต้นได้",
+    article_section(
+        "ปัจจัยที่มีผลต่อราคาตรวจสอบอาคาร",
+        article_list([
+            "<strong>ขนาดพื้นที่อาคาร (ตร.ม.)</strong> — อาคารยิ่งใหญ่ ยิ่งใช้เวลาและกำลังคนตรวจสอบมากขึ้น",
+            "<strong>ประเภทอาคาร</strong> — อาคารที่พักอาศัย อาคารสำนักงาน โรงงาน หรืออาคารสูง มีความซับซ้อนของระบบต่างกัน",
+            "<strong>ตรวจสอบใหญ่ หรือ ตรวจสอบประจำปี</strong> — ตรวจสอบใหญ่ครอบคลุมทุกระบบจึงมีราคาสูงกว่าตรวจสอบประจำปีที่เน้นเฉพาะจุดเสี่ยง",
+            "<strong>จำนวนระบบที่ต้องตรวจ</strong> — อาคารที่มีลิฟต์ ระบบดับเพลิงอัตโนมัติ ระบบระบายอากาศเชิงกล จะมีรายการตรวจมากกว่าอาคารทั่วไป",
+            "<strong>สภาพและการเข้าถึงพื้นที่</strong> — อาคารเก่า มีจุดที่เข้าถึงยาก หรือมีปัญหาซ่อนอยู่ อาจต้องใช้เวลาตรวจสอบเพิ่ม",
+        ])
+    )
+    + article_section(
+        "ทำไมราคาจากแต่ละบริษัทถึงต่างกันมาก?",
+        article_p("ราคาที่ต่างกันมากระหว่างบริษัทตรวจสอบ มักมาจากขอบเขตงานที่ต่างกัน บางเจ้าอาจตรวจแบบผิวเผินเพื่อให้ราคาถูก ซึ่งเสี่ยงต่อการตรวจไม่ครบตามที่กฎหมายกำหนด หรือใช้ผู้ตรวจที่ไม่ได้ขึ้นทะเบียนจริง แนะนำให้ตรวจสอบว่าผู้ตรวจสอบมีเลขทะเบียนกับกรมโยธาธิการและผังเมืองก่อนตัดสินใจว่าจ้างทุกครั้ง")
+    )
+    + article_section(
+        "อยากรู้ราคาที่แน่นอนสำหรับอาคารของท่าน?",
+        article_p("วิธีที่แม่นยำที่สุดคือส่งรายละเอียดอาคาร (ขนาด ประเภท ปีที่สร้าง) ให้ทีมวิศวกรของเราประเมินและจัดทำใบเสนอราคาให้ฟรี ไม่มีค่าใช้จ่ายในการประเมินเบื้องต้น")
+    ),
+    "inspection-cost.html",
+    cta_title="ขอใบเสนอราคาตรวจสอบอาคารฟรี",
+    cta_sub="ส่งขนาดและประเภทอาคาร รับใบเสนอราคาภายใน 24 ชั่วโมง",
+)
+
+
+ARTICLE_CONDO_MAIN = article_page_main(
+    "ความรู้ตามกฎหมาย",
+    "นิติบุคคลอาคารชุด/คอนโด ต้องตรวจสอบอาคารไหม ทำอย่างไร",
+    "คณะกรรมการและผู้จัดการนิติบุคคลอาคารชุดหลายแห่งยังไม่แน่ใจว่าคอนโดของตัวเองต้องตรวจสอบอาคารตามกฎหมายหรือไม่ และถ้าต้องทำ ใครในนิติบุคคลที่ต้องรับผิดชอบ",
+    article_section(
+        "คอนโดแบบไหนต้องตรวจสอบอาคาร?",
+        article_p("อาคารชุดหรืออาคารที่ใช้เป็นที่อยู่อาศัยรวม ที่มีพื้นที่รวมกันตั้งแต่ 2,000 ตารางเมตรขึ้นไป เข้าข่ายต้องตรวจสอบตามมาตรา 32 ทวิ แห่ง พ.ร.บ. ควบคุมอาคาร ซึ่งคอนโดส่วนใหญ่ในกรุงเทพฯ ที่มีมากกว่า 1-2 อาคารหรือสูงเกิน 8 ชั้น มักเข้าเกณฑ์นี้")
+    )
+    + article_section(
+        "ใครในนิติบุคคลที่ต้องรับผิดชอบ?",
+        article_p("ตาม พ.ร.บ. อาคารชุด คณะกรรมการนิติบุคคลอาคารชุดและผู้จัดการนิติบุคคลมีหน้าที่ดูแลทรัพย์สินส่วนกลาง ซึ่งรวมถึงการปฏิบัติตามกฎหมายที่เกี่ยวข้องกับความปลอดภัยของอาคาร การจัดให้มีการตรวจสอบอาคารและยื่นรายงานจึงเป็นความรับผิดชอบของคณะกรรมการ ไม่ใช่ของเจ้าของห้องชุดแต่ละคน")
+    )
+    + article_section(
+        "ถ้าไม่ทำ นิติบุคคลเสี่ยงอะไร?",
+        article_p("นอกจากบทลงโทษตามกฎหมาย (จำคุกไม่เกิน 3 เดือน ปรับไม่เกิน 60,000 บาท และปรับรายวันจนกว่าจะยื่นรายงานถูกต้อง — อ่านรายละเอียดเพิ่มเติมได้ที่หน้าความรู้ตามกฎหมาย) คณะกรรมการนิติบุคคลยังอาจถูกเจ้าของร่วมตั้งคำถามถึงความรับผิดชอบ หากเกิดอุบัติเหตุแล้วพบว่าไม่มีใบ ร.1 ที่เป็นปัจจุบัน อาจกระทบต่อการเคลมประกันภัยของอาคารทั้งหมดด้วย")
+    )
+    + article_section(
+        "งบประมาณสำหรับตรวจสอบอาคารมาจากไหน?",
+        article_p("โดยทั่วไปค่าใช้จ่ายในการตรวจสอบอาคารประจำปี/ตรวจสอบใหญ่ จะจัดสรรจากเงินกองทุน/เงินสำรอง หรือค่าใช้จ่ายส่วนกลางของนิติบุคคล ควรวางแผนงบประมาณล่วงหน้าตั้งแต่ต้นปี โดยเฉพาะปีที่ครบรอบตรวจสอบใหญ่ซึ่งมีค่าใช้จ่ายสูงกว่าปกติ")
+    ),
+    "condo-inspection.html",
+)
+
+
+ARTICLE_POR1_MAIN = article_page_main(
+    "ความรู้ตามกฎหมาย",
+    "ใบ ร.1 คืออะไร? ขั้นตอนขอใบรับรองตรวจสอบอาคาร",
+    "ใบ ร.1 เป็นเอกสารสำคัญที่เจ้าของอาคารควบคุมต้องมีไว้ แต่หลายคนยังสับสนว่าต่างจากใบอนุญาตก่อสร้าง (อ.6) อย่างไร และต้องขอยังไง",
+    article_section(
+        "ใบ ร.1 คืออะไร ต่างจาก อ.6 อย่างไร",
+        article_p("ใบ ร.1 คือใบรับรองการตรวจสอบสภาพอาคาร ที่เจ้าพนักงานท้องถิ่นออกให้หลังพิจารณารายงานผลการตรวจสอบจากผู้ตรวจสอบอาคารที่ขึ้นทะเบียน เป็นเอกสารรับรองว่าอาคารยังอยู่ในสภาพปลอดภัยและใช้งานได้ตามกฎหมาย")
+        + article_p("ต่างจากใบอนุญาตก่อสร้าง (อ.6) ซึ่งเป็นการอนุญาตให้ก่อสร้างหรือใช้อาคารได้ตั้งแต่แรก — ใบ ร.1 คือการรับรอง <em>สภาพอาคารหลังใช้งานแล้ว</em> ต้องยื่นขอใหม่ทุกครั้งที่มีการตรวจสอบตามรอบ (ทั้งตรวจสอบใหญ่และตรวจสอบประจำปี)")
+    )
+    + article_section(
+        "ขั้นตอนการขอใบ ร.1",
+        article_list([
+            "ตรวจสอบว่าอาคารเข้าข่าย 1 ใน 9 ประเภทอาคารควบคุมหรือไม่",
+            "ติดต่อผู้ตรวจสอบอาคารที่ขึ้นทะเบียนกับกรมโยธาธิการฯ เพื่อประเมินขอบเขตงาน",
+            "ผู้ตรวจสอบลงพื้นที่ตรวจอาคารจริง",
+            "ผู้ตรวจสอบจัดทำและลงนามในรายงานผลการตรวจสอบ",
+            "เจ้าของอาคารนำรายงานไปยื่นต่อเจ้าพนักงานท้องถิ่นในพื้นที่ที่อาคารตั้งอยู่",
+        ])
+    )
+    + article_section(
+        "ยื่นที่ไหน ใช้เอกสารอะไรบ้าง",
+        article_p("ยื่นต่อเจ้าพนักงานท้องถิ่นในพื้นที่ที่อาคารตั้งอยู่ ได้แก่ สำนักงานเขต (ในกรุงเทพฯ) เทศบาล หรือองค์กรปกครองส่วนท้องถิ่นอื่นๆ โดยใช้รายงานผลการตรวจสอบที่ลงนามโดยผู้ตรวจสอบ พร้อมเอกสารประจำตัวของเจ้าของอาคารหรือผู้แทนนิติบุคคล")
+    )
+    + article_section(
+        "ต้องต่ออายุบ่อยแค่ไหน?",
+        article_p("รอบการยื่นขึ้นอยู่กับรอบตรวจสอบของอาคาร (ตรวจสอบประจำปี = ยื่นทุกปี, ตรวจสอบใหญ่ = ยื่นทุก 5 ปี) หากไม่แน่ใจว่าอาคารของท่านครบกำหนดยื่นเมื่อไหร่ ทีมเรายินดีช่วยตรวจสอบประวัติและยื่นรายงานแทนท่านได้")
+    ),
+    "por-1-certificate.html",
+)
+
+
+ARTICLE_TYPES_MAIN = article_page_main(
+    "ความรู้ตามกฎหมาย",
+    "อาคารแบบไหนต้องตรวจสอบตามกฎหมายบ้าง เช็ค 9 ประเภทอาคารควบคุม",
+    "พ.ร.บ. ควบคุมอาคาร กำหนดอาคาร 9 ประเภทที่ต้องจัดให้มีการตรวจสอบและยื่นรายงานต่อเจ้าพนักงานท้องถิ่น บทความนี้อธิบายแต่ละประเภทให้เข้าใจง่ายพร้อมตัวอย่าง",
+    article_section(
+        "1. อาคารสูง (ตั้งแต่ 23 เมตรขึ้นไป)",
+        article_p("นับจากระดับพื้นดินถึงพื้นดาดฟ้า โดยประมาณเทียบเท่าอาคาร 8 ชั้นขึ้นไป เช่น คอนโดมิเนียม อาคารสำนักงาน หรือโรงแรมสูง")
+    )
+    + article_section(
+        "2. อาคารขนาดใหญ่พิเศษ (พื้นที่รวม ≥ 10,000 ตร.ม.)",
+        article_p("ไม่ว่าจะเป็นอาคารประเภทใด หากมีพื้นที่รวมกันตั้งแต่ 10,000 ตารางเมตรขึ้นไป เช่น ห้างสรรพสินค้า ศูนย์การค้าขนาดใหญ่")
+    )
+    + article_section(
+        "3. อาคารชุมนุมคน (≥ 1,000 ตร.ม. หรือรองรับคน ≥ 500 คน)",
+        article_p("เช่น หอประชุม ศูนย์ประชุม สนามกีฬาในร่ม ห้องจัดเลี้ยงขนาดใหญ่")
+    )
+    + article_section(
+        "4. โรงมหรสพ",
+        article_p("โรงภาพยนตร์ โรงละคร หรือสถานที่ที่จัดไว้สำหรับการแสดงเป็นปกติธุระ")
+    )
+    + article_section(
+        "5. โรงแรม ตั้งแต่ 80 ห้องขึ้นไป",
+        article_p("โรงแรมหรือที่พักที่มีจำนวนห้องพักตั้งแต่ 80 ห้องขึ้นไป")
+    )
+    + article_section(
+        "6. อาคารชุด หรืออาคารอยู่อาศัยรวม (พื้นที่รวม ≥ 2,000 ตร.ม.)",
+        article_p("คอนโดมิเนียม อพาร์ตเมนต์ หรือหอพักที่มีพื้นที่รวมกันตั้งแต่ 2,000 ตารางเมตรขึ้นไป — อ่านรายละเอียดเฉพาะกลุ่มนิติบุคคลอาคารชุดเพิ่มเติมได้ที่บทความ &quot;นิติบุคคลอาคารชุด/คอนโด ต้องตรวจสอบอาคารไหม&quot;")
+    )
+    + article_section(
+        "7. โรงงาน (พื้นที่ ≥ 5,000 ตร.ม.)",
+        article_p("โรงงานอุตสาหกรรมที่มีพื้นที่ใช้สอยตั้งแต่ 5,000 ตารางเมตรขึ้นไป")
+    )
+    + article_section(
+        "8. ป้าย (สูงหรือกว้าง ≥ 15 เมตร)",
+        article_p("ป้ายโฆษณาขนาดใหญ่ที่ติดตั้งบนพื้นดินหรือบนอาคาร ที่มีความสูงหรือความกว้างตั้งแต่ 15 เมตรขึ้นไป")
+    )
+    + article_section(
+        "9. สถานบริการ (พื้นที่ ≥ 200 ตร.ม.)",
+        article_p("สถานบันเทิง ผับ บาร์ หรือสถานบริการตามกฎหมายว่าด้วยสถานบริการ ที่มีพื้นที่ตั้งแต่ 200 ตารางเมตรขึ้นไป")
+    )
+    + article_section(
+        "ไม่แน่ใจว่าอาคารของท่านเข้าข่ายหรือไม่?",
+        article_p("บางอาคารอาจเข้าข่ายมากกว่า 1 ประเภท หรือมีรายละเอียดปลีกย่อยที่ต้องตีความตามกฎหมาย วิธีที่ชัวร์ที่สุดคือส่งข้อมูลอาคาร (ประเภท ขนาด จำนวนชั้น) ให้ทีมวิศวกรของเราประเมินให้ฟรี")
+    ),
+    "which-buildings-must-inspect.html",
+)
 
 
 CONTACT_MAIN = '''
@@ -1017,6 +1261,59 @@ if __name__ == "__main__":
     print("wrote contact.html")
 
     # ------------------------------------------------------------
+    # บทความความรู้ตามกฎหมาย (SEO เฟส 2) — หน้าละ URL/title/meta ของตัวเอง
+    # ------------------------------------------------------------
+    with open(os.path.join(OUT_DIR, "inspection-schedule.html"), "w", encoding="utf-8") as f:
+        f.write(page(
+            "ตรวจสอบอาคารกี่ปีครั้ง? ตรวจสอบใหญ่ vs ตรวจสอบประจำปี ต่างกันอย่างไร | Empower Best Solution",
+            "สรุปความแตกต่างระหว่างตรวจสอบใหญ่ (ทุก 5 ปี) กับตรวจสอบประจำปี ตรวจอะไรบ้าง ใครเป็นผู้ตรวจ และอาคารของท่านต้องทำแบบไหนตามกฎหมายควบคุมอาคาร",
+            "legal-knowledge.html",
+            ARTICLE_SCHEDULE_MAIN,
+            url_path="inspection-schedule.html",
+        ))
+    print("wrote inspection-schedule.html")
+
+    with open(os.path.join(OUT_DIR, "inspection-cost.html"), "w", encoding="utf-8") as f:
+        f.write(page(
+            "ค่าตรวจสอบอาคารราคาเท่าไหร่? ปัจจัยที่มีผลต่อราคา | Empower Best Solution",
+            "ค่าตรวจสอบอาคารไม่มีราคาตายตัว ขึ้นอยู่กับขนาด ประเภทอาคาร และจำนวนระบบที่ต้องตรวจ อ่านปัจจัยที่มีผลต่อราคา พร้อมขอใบเสนอราคาฟรี",
+            "legal-knowledge.html",
+            ARTICLE_COST_MAIN,
+            url_path="inspection-cost.html",
+        ))
+    print("wrote inspection-cost.html")
+
+    with open(os.path.join(OUT_DIR, "condo-inspection.html"), "w", encoding="utf-8") as f:
+        f.write(page(
+            "นิติบุคคลอาคารชุด/คอนโด ต้องตรวจสอบอาคารไหม ทำอย่างไร | Empower Best Solution",
+            "คอนโดพื้นที่รวมตั้งแต่ 2,000 ตร.ม. ต้องตรวจสอบอาคารตามกฎหมาย คณะกรรมการนิติบุคคลมีหน้าที่อะไรบ้าง และถ้าไม่ทำเสี่ยงอะไร อ่านสรุปได้ที่นี่",
+            "legal-knowledge.html",
+            ARTICLE_CONDO_MAIN,
+            url_path="condo-inspection.html",
+        ))
+    print("wrote condo-inspection.html")
+
+    with open(os.path.join(OUT_DIR, "por-1-certificate.html"), "w", encoding="utf-8") as f:
+        f.write(page(
+            "ใบ ร.1 คืออะไร? ขั้นตอนขอใบรับรองตรวจสอบอาคาร | Empower Best Solution",
+            "ใบ ร.1 คือใบรับรองการตรวจสอบสภาพอาคาร ต่างจากใบอนุญาต อ.6 อย่างไร ขั้นตอนขอใบ ร.1 ยื่นที่ไหน ใช้เอกสารอะไรบ้าง อ่านสรุปได้ที่นี่",
+            "legal-knowledge.html",
+            ARTICLE_POR1_MAIN,
+            url_path="por-1-certificate.html",
+        ))
+    print("wrote por-1-certificate.html")
+
+    with open(os.path.join(OUT_DIR, "which-buildings-must-inspect.html"), "w", encoding="utf-8") as f:
+        f.write(page(
+            "อาคารแบบไหนต้องตรวจสอบตามกฎหมายบ้าง เช็ค 9 ประเภทอาคารควบคุม | Empower Best Solution",
+            "เช็ค 9 ประเภทอาคารควบคุมที่กฎหมายกำหนดให้ต้องตรวจสอบและยื่นรายงาน ตั้งแต่อาคารสูง โรงงาน โรงแรม ไปจนถึงป้ายโฆษณาขนาดใหญ่ พร้อมตัวอย่างประกอบ",
+            "legal-knowledge.html",
+            ARTICLE_TYPES_MAIN,
+            url_path="which-buildings-must-inspect.html",
+        ))
+    print("wrote which-buildings-must-inspect.html")
+
+    # ------------------------------------------------------------
     # sitemap.xml — เฉพาะหน้าเนื้อหาหลัก 6 หน้า (ไม่รวมหน้า thank-you / liff
     # ซึ่งเป็นหน้าใช้งานภายใน ไม่ใช่หน้าที่อยากให้ค้นเจอบน Google)
     # ------------------------------------------------------------
@@ -1027,6 +1324,11 @@ if __name__ == "__main__":
         ("services.html", "0.9"),
         ("legal-knowledge.html", "0.7"),
         ("contact.html", "0.8"),
+        ("inspection-schedule.html", "0.6"),
+        ("inspection-cost.html", "0.6"),
+        ("condo-inspection.html", "0.6"),
+        ("por-1-certificate.html", "0.6"),
+        ("which-buildings-must-inspect.html", "0.6"),
     ]
     lastmod = __import__("datetime").date.today().isoformat()
     sitemap_entries = []
