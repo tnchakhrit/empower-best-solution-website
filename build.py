@@ -787,7 +787,7 @@ LEGAL_MAIN = '''
         <summary style="cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:16px; color:#1E3A28;">ถ้าไม่ตรวจสอบ มีบทลงโทษอย่างไร?
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0; margin-left:12px;"><path d="M6 9l6 6 6-6" stroke="#BE7C3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </summary>
-        <p style="margin:14px 0 0 0; font-family:'Noto Sans Thai',sans-serif; font-size:14px; line-height:1.8; color:#4A564C;">อาคารที่ไม่ยื่นรายงานการตรวจสอบตามกำหนด อาจมีความผิดตาม พ.ร.บ. ควบคุมอาคาร ทั้งโทษปรับและอาจกระทบต่อการต่ออายุใบอนุญาตใช้อาคาร [ระบุอัตราโทษที่แน่นอนตามกฎหมายฉบับล่าสุด]</p>
+        <p style="margin:14px 0 0 0; font-family:'Noto Sans Thai',sans-serif; font-size:14px; line-height:1.8; color:#4A564C;">เจ้าของอาคารที่ไม่ยื่นรายงานผลการตรวจสอบตามมาตรา 32 ทวิ มีความผิดตามมาตรา 65 ทวิ แห่ง พ.ร.บ. ควบคุมอาคาร ต้องระวางโทษจำคุกไม่เกิน 3 เดือน หรือปรับไม่เกิน 60,000 บาท หรือทั้งจำทั้งปรับ และยังมีโทษปรับรายวันอีกไม่เกินวันละ 10,000 บาท จนกว่าจะยื่นรายงานให้ถูกต้อง นอกจากนี้หากเกิดอุบัติเหตุหรือเพลิงไหม้ บริษัทประกันภัยอาจปฏิเสธการเคลมความเสียหายได้หากอาคารไม่มีใบรับรองการตรวจสอบ (ร.1) ที่เป็นปัจจุบัน</p>
       </details>
 
       <details style="padding:26px 28px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
