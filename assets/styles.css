@@ -95,6 +95,11 @@ summary svg { transition: transform 0.15s ease; }
 /* Netlify form honeypot field */
 .hidden-field { position: absolute; left: -9999px; }
 
+/* Reminder-program LINE registration: mobile-only simplified content
+   (hidden on desktop, swapped in under the 900px breakpoint below) */
+.mobile-line-block { display: none; }
+.mobile-line-heading { display: none; }
+
 /* ============================================================
    Mobile breakpoint
    ============================================================ */
@@ -150,6 +155,18 @@ summary svg { transition: transform 0.15s ease; }
 
   .form-grid { grid-template-columns: 1fr !important; }
   .form-grid > div[style*="span 2"] { grid-column: auto !important; }
+
+  /* Reminder-program LINE registration: LINE-only flow on mobile —
+     hide the website/email fallback card and the form entirely, and
+     swap the LINE card's copy for the shorter mobile version. */
+  #reminder-website-box,
+  #reminder-form-row,
+  #line-intro-desktop-text,
+  #line-step2-block { display: none !important; }
+
+  .mobile-line-block { display: flex !important; }
+  .mobile-line-heading { display: inline !important; }
+  #line-heading-desktop { display: none !important; }
 }
 
 @media (max-width: 600px) {
