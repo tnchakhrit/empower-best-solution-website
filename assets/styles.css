@@ -162,7 +162,8 @@ summary svg { transition: transform 0.15s ease; }
   #reminder-website-box,
   #reminder-form-row,
   #line-intro-desktop-text,
-  #line-step2-block { display: none !important; }
+  #line-step2-block,
+  #choose-path-heading { display: none !important; }
 
   .mobile-line-block { display: flex !important; }
   .mobile-line-heading { display: inline !important; }

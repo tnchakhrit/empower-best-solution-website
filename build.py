@@ -537,7 +537,7 @@ REMINDER_MAIN = '''
 
   <!-- CHOOSE PATH -->
   <div style="display:flex; flex-direction:column; gap:28px; padding:0 64px 72px 64px;">
-    <div style="display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center;">
+    <div id="choose-path-heading" style="display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center;">
       <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:3px; color:#BE7C3E; text-transform:uppercase;">เลือกวิธีลงทะเบียน</span>
       <h2 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:26px; color:#1E3A28;">อยากรับแจ้งเตือนผ่านช่องทางไหน?</h2>
     </div>
