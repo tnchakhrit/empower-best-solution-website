@@ -94,6 +94,7 @@ FOOTER = '''  <!-- FOOTER -->
     </div>
     <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(247,242,227,0.15); margin-top:48px; padding-top:24px; flex-wrap:wrap; gap:16px;">
       <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:rgba(247,242,227,0.5);">© 2026 Empower Best Solution Co., Ltd. สงวนลิขสิทธิ์</span>
+      <a href="privacy-policy.html" style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:rgba(247,242,227,0.5);">นโยบายความเป็นส่วนตัว</a>
       <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:rgba(247,242,227,0.5);">ขึ้นทะเบียนผู้ตรวจสอบอาคารกับ ก.ย.ผ.</span>
       <a href="https://www.bsa.or.th/" target="_blank" rel="noopener" title="สมาคมผู้ตรวจสอบอาคาร (BSA)" style="display:flex; align-items:center;">
         <img src="assets/bsa-badge.png" alt="BSA - สมาคมผู้ตรวจสอบอาคาร" style="height:42px; width:auto; display:block;">
@@ -1206,6 +1207,67 @@ CONTACT_MAIN = '''
 '''
 
 
+PRIVACY_MAIN = '''
+  <!-- INTRO -->
+  <div style="display:flex; flex-direction:column; padding:80px 64px 24px 64px; gap:18px; max-width:820px;">
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div style="width:28px; height:1px; background:#BE7C3E;"></div>
+      <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:3px; color:#BE7C3E; text-transform:uppercase;">นโยบายความเป็นส่วนตัว</span>
+    </div>
+    <h1 style="margin:0; font-family:'Noto Serif Thai',serif; font-weight:700; font-size:32px; line-height:1.4; color:#1E3A28;">นโยบายความเป็นส่วนตัว (Privacy Policy)</h1>
+    <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:14.5px; line-height:1.9; color:#4A564C;">Empower Best Solution Co., Ltd. ("บริษัท", "เรา") ให้ความสำคัญกับความเป็นส่วนตัวของท่าน นโยบายนี้อธิบายว่าเราเก็บ ใช้ และดูแลข้อมูลส่วนบุคคลของท่านอย่างไร เมื่อท่านใช้งานเว็บไซต์ empowerbestsolution.com และบัญชี LINE Official Account (@911hrhms) ของเรา ให้สอดคล้องกับพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)</p>
+    <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#9A9481;">ปรับปรุงล่าสุด: 28 กันยายน 2569</p>
+  </div>
+
+  <!-- BODY -->
+  <div style="display:flex; flex-direction:column; gap:32px; padding:24px 64px 96px 64px; max-width:820px;">
+
+''' + article_section(
+    "1. ข้อมูลที่เราเก็บรวบรวม",
+    article_p('เราเก็บข้อมูลเฉพาะที่ท่านให้ไว้โดยตรง เมื่อท่านลงทะเบียนผ่านหน้าเว็บไซต์ ผ่านฟอร์มใน LINE Official Account หรือติดต่อเราผ่านแบบฟอร์มติดต่อ ได้แก่:') + "\n"
+    + article_list([
+        "ชื่อ-นามสกุล และเบอร์โทรศัพท์",
+        "อีเมล",
+        "ชื่ออาคาร ประเภทอาคาร และวันหมดอายุหนังสือรับรอง (อ.6/ร.1)",
+        "LINE User ID (เกิดขึ้นอัตโนมัติเมื่อท่านเพิ่มเพื่อนหรือลงทะเบียนผ่าน LINE OA เพื่อให้เราส่งข้อความแจ้งเตือนถึงท่านได้)",
+    ])
+) + article_section(
+    "2. วัตถุประสงค์ในการใช้ข้อมูล",
+    article_p('เราใช้ข้อมูลของท่านเพื่อวัตถุประสงค์ดังต่อไปนี้เท่านั้น:') + "\n"
+    + article_list([
+        "ส่งข้อความแจ้งเตือนล่วงหน้าก่อนถึงกำหนดตรวจสอบอาคาร (ตรวจสอบใหญ่ทุก 5 ปี และตรวจสอบประจำปี) ทางอีเมลและ/หรือ LINE",
+        "ให้ทีมงานติดต่อกลับเพื่อประเมินขอบเขตงานและเสนอราคาบริการตรวจสอบอาคาร กรณีท่านสนใจใช้บริการ",
+        "ตอบคำถามหรือให้คำปรึกษาตามที่ท่านติดต่อเข้ามา",
+    ]) + "\n"
+    + article_p('เราจะไม่ใช้ข้อมูลของท่านเพื่อส่งโฆษณาสินค้า/บริการอื่นที่ไม่เกี่ยวข้อง หรือนำไปแสวงหาประโยชน์ในลักษณะอื่นนอกเหนือจากที่ระบุไว้ข้างต้น')
+) + article_section(
+    "3. การเปิดเผยข้อมูลต่อบุคคลภายนอก",
+    article_p('เราไม่ขายหรือให้เช่าข้อมูลส่วนบุคคลของท่านแก่บุคคลภายนอกเพื่อวัตถุประสงค์ทางการตลาด ข้อมูลของท่านจะถูกเข้าถึงได้เฉพาะทีมงานของเราและผู้ให้บริการที่จำเป็นต่อการส่งการแจ้งเตือน (เช่น ผู้ให้บริการอีเมลและแพลตฟอร์ม LINE Official Account) ซึ่งมีหน้าที่รักษาความลับของข้อมูลเช่นเดียวกัน หรือกรณีที่กฎหมายกำหนดให้ต้องเปิดเผย')
+) + article_section(
+    "4. ระยะเวลาในการเก็บข้อมูล",
+    article_p('เราเก็บข้อมูลของท่านไว้ตราบเท่าที่จำเป็นต่อการให้บริการแจ้งเตือน หรือจนกว่าท่านจะแจ้งขอยกเลิกการรับแจ้งเตือน หลังจากนั้นเราจะลบหรือทำให้ข้อมูลไม่สามารถระบุตัวตนได้ภายในระยะเวลาที่เหมาะสม')
+) + article_section(
+    "5. สิทธิของเจ้าของข้อมูล",
+    article_p('ท่านมีสิทธิขอเข้าถึง ขอแก้ไขให้ถูกต้อง ขอลบ หรือขอถอนความยินยอมในการเก็บและใช้ข้อมูลของท่านได้ทุกเมื่อ รวมถึงสิทธิขอยกเลิกการรับข้อความแจ้งเตือน โดยติดต่อเราตามช่องทางด้านล่าง')
+) + article_section(
+    "6. ความปลอดภัยของข้อมูล",
+    article_p('เราจัดให้มีมาตรการดูแลรักษาความปลอดภัยของข้อมูลตามความเหมาะสม เพื่อป้องกันการเข้าถึง ใช้ เปลี่ยนแปลง หรือเปิดเผยข้อมูลโดยไม่ได้รับอนุญาต')
+) + article_section(
+    "7. การปรับปรุงนโยบาย",
+    article_p('เราอาจปรับปรุงนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว การเปลี่ยนแปลงจะมีผลทันทีที่เผยแพร่บนหน้านี้ พร้อมระบุวันที่ปรับปรุงล่าสุดไว้ด้านบน')
+) + article_section(
+    "8. ช่องทางติดต่อ",
+    article_p('หากท่านมีคำถามเกี่ยวกับนโยบายความเป็นส่วนตัวนี้ หรือต้องการใช้สิทธิของท่านตามข้อ 5 สามารถติดต่อเราได้ที่:') + "\n"
+    + article_list([
+        "อีเมล: empower.bestsolution2024@gmail.com",
+        "โทรศัพท์: 062-956-5194",
+        "LINE Official Account: @911hrhms",
+    ])
+) + '''
+  </div>
+'''
+
+
 if __name__ == "__main__":
     with open(os.path.join(OUT_DIR, "index.html"), "w", encoding="utf-8") as f:
         f.write(page(
@@ -1260,6 +1322,15 @@ if __name__ == "__main__":
             CONTACT_MAIN,
         ))
     print("wrote contact.html")
+
+    with open(os.path.join(OUT_DIR, "privacy-policy.html"), "w", encoding="utf-8") as f:
+        f.write(page(
+            "นโยบายความเป็นส่วนตัว | Empower Best Solution",
+            "นโยบายความเป็นส่วนตัวของ Empower Best Solution อธิบายการเก็บ ใช้ และดูแลข้อมูลส่วนบุคคลของผู้ใช้งานเว็บไซต์และ LINE Official Account ตาม PDPA",
+            "privacy-policy.html",
+            PRIVACY_MAIN,
+        ))
+    print("wrote privacy-policy.html")
 
     # ------------------------------------------------------------
     # บทความความรู้ตามกฎหมาย (SEO เฟส 2) — หน้าละ URL/title/meta ของตัวเอง
