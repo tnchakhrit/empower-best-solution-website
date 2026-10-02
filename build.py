@@ -482,7 +482,7 @@ REMINDER_MAIN = '''
       <p style="margin:0; font-family:'Noto Sans Thai',sans-serif; font-size:16px; line-height:1.85; color:#4A564C; max-width:520px;">ลงทะเบียนฟรี ระบบจะแจ้งเตือนล่วงหน้าให้ท่านทาง LINE และอีเมล ก่อนถึงกำหนดตรวจสอบทุกครั้ง พร้อมทีมงานพร้อมติดต่อเสนอราคาให้ทันเวลา ไม่ต้องกังวลว่าจะลืมหรือเลยกำหนดตามกฎหมายอีกต่อไป</p>
       <div style="display:flex; gap:28px; margin-top:8px; flex-wrap:wrap;">
         <div style="display:flex; flex-direction:column; gap:4px;">
-          <span style="font-family:'Noto Serif Thai',serif; font-weight:700; font-size:24px; color:#BE7C3E;">90 / 60 / 45</span>
+          <span style="font-family:'Noto Serif Thai',serif; font-weight:700; font-size:24px; color:#BE7C3E;">120 / 90 / 60 / 45</span>
           <span style="font-family:'Noto Sans Thai',sans-serif; font-size:12px; color:#4A564C;">วันแจ้งเตือนล่วงหน้า</span>
         </div>
         <div style="display:flex; flex-direction:column; gap:4px;">
@@ -526,7 +526,7 @@ REMINDER_MAIN = '''
       <div style="display:flex; flex-direction:column; gap:14px; padding:28px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
         <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#BE7C3E;">STEP / 03</span>
         <span style="font-family:'Noto Sans Thai',sans-serif; font-weight:700; font-size:16px; color:#1E3A28;">รับการแจ้งเตือนล่วงหน้า</span>
-        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; line-height:1.7;">แจ้งเตือนทาง LINE และอีเมล ล่วงหน้า 90 / 60 / 45 วันก่อนครบกำหนด</span>
+        <span style="font-family:'Noto Sans Thai',sans-serif; font-size:13px; color:#4A564C; line-height:1.7;">แจ้งเตือนทาง LINE และอีเมล ล่วงหน้า 120 / 90 / 60 / 45 วันก่อนครบกำหนด</span>
       </div>
       <div style="display:flex; flex-direction:column; gap:14px; padding:28px; background:#FFFFFF; border:1px solid #E4DCC8; border-radius:8px;">
         <span style="font-family:'IBM Plex Mono',monospace; font-size:12px; color:#BE7C3E;">STEP / 04</span>
@@ -1291,7 +1291,7 @@ if __name__ == "__main__":
     with open(os.path.join(OUT_DIR, "reminder-program.html"), "w", encoding="utf-8") as f:
         f.write(page(
             "โปรแกรมเตือนตรวจสอบอาคาร | Empower Best Solution",
-            "ลงทะเบียนฟรี รับการแจ้งเตือนล่วงหน้า 90/60/45 วันก่อนครบกำหนดตรวจสอบอาคาร ทาง LINE และอีเมล ไม่ต้องกังวลว่าจะลืมหรือเลยกำหนดตามกฎหมายอีกต่อไป",
+            "ลงทะเบียนฟรี รับการแจ้งเตือนล่วงหน้า 120/90/60/45 วันก่อนครบกำหนดตรวจสอบอาคาร ทาง LINE และอีเมล ไม่ต้องกังวลว่าจะลืมหรือเลยกำหนดตามกฎหมายอีกต่อไป",
             "reminder-program.html",
             REMINDER_MAIN,
         ))
